@@ -13,11 +13,11 @@ public class DFARunner {
     
     private Result result;
     private final Word word;
-    private State currentState;
+    private State current;
     
-    public DFARunner(State startState, Word word) {
+    public DFARunner(State initial, Word word) {
         this.word = word;
-        this.currentState = startState;
+        this.current = initial;
         this.result = new Result(new DeadState(), ResultType.DEAD_STATE);
     }
     
@@ -25,18 +25,18 @@ public class DFARunner {
         
         for (Symbol symbol : word) {
             // FIXME: by definition, DFA's states only return one next state
-            List<State> nextState = currentState.compute(symbol);
+            List<State> nextState = current.compute(symbol);
             if (!nextState.isEmpty()) {
-                currentState = nextState.get(0);
+                current = nextState.get(0);
             }
         }
         
-        if (currentState == null) {
-            result = new Result(currentState, ResultType.DEAD_STATE);
-        } else if (currentState.isFinal()) {
-            result = new Result(currentState, ResultType.ACCECPTED);
+        if (current.equals(new DeadState())) {
+            result = new Result(current, ResultType.DEAD_STATE);
+        } else if (current.isFinal()) {
+            result = new Result(current, ResultType.ACCECPTED);
         } else {
-            result = new Result(currentState, ResultType.REJECTED);
+            result = new Result(current, ResultType.REJECTED);
         }
     }
     
