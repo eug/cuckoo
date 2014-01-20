@@ -1,6 +1,7 @@
 
 package cuckoo.turnstile;
 
+import cuckoo.common.DefaultSymbol;
 import cuckoo.common.State;
 import cuckoo.common.Symbol;
 import cuckoo.common.Word;
@@ -13,8 +14,8 @@ import cuckoo.runners.DFARunner;
 public class Main {
     public static void main(String[] args) {
         // create all symbols
-        Symbol coin = new Coin();
-        Symbol push = new Push();
+        Symbol coin = new DefaultSymbol("Coin");
+        Symbol push = new DefaultSymbol("Push");
         
         // create all states
         State locked   = new State("Locked");

@@ -1,6 +1,7 @@
 
 package cuckoo.vendingmachine;
 
+import cuckoo.common.DefaultSymbol;
 import cuckoo.common.State;
 import cuckoo.common.Symbol;
 import cuckoo.common.Word;
@@ -13,9 +14,9 @@ import cuckoo.runners.DFARunner;
 public class Main {
     public static void main(String[] args) {
         // create all symbols
-        Symbol coin025 = new Coin025();
-        Symbol coin100 = new Coin100();
-        Symbol select  = new Select();
+        Symbol coin025 = new DefaultSymbol("$0.25");
+        Symbol coin100 = new DefaultSymbol("$1.00");
+        Symbol select  = new DefaultSymbol("Select");
         
         // create all states
         State coins000 = new State("$0.00", false);
