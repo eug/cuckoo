@@ -1,10 +1,10 @@
 
 package cuckoo.vendingmachine;
 
-import cuckoo.common.DefaultSymbol;
+import cuckoo.common.Word;
 import cuckoo.common.State;
 import cuckoo.common.Symbol;
-import cuckoo.common.Word;
+import cuckoo.common.DefaultSymbol;
 import cuckoo.runners.DFARunner;
 
 /**
@@ -31,41 +31,41 @@ public class Main {
         
         
         // create all transitions
-        coins000.addTransition(select,  coins000);
-        coins000.addTransition(coin025, coins025);
-        coins000.addTransition(coin100, coins100);
+        coins000.trans().when(select).goTo(coins000);
+        coins000.trans().when(coin025).goTo(coins025);
+        coins000.trans().when(coin100).goTo(coins100);
         
-        coins025.addTransition(select,  coins025);
-        coins025.addTransition(coin025, coins050);
-        coins025.addTransition(coin100, coins125);
+        coins025.trans().when(select).goTo(coins025);
+        coins025.trans().when(coin025).goTo(coins050);
+        coins025.trans().when(coin100).goTo(coins125);
         
-        coins050.addTransition(select,  coins050);
-        coins050.addTransition(coin025, coins075);
-        coins050.addTransition(coin100, coins150);
+        coins050.trans().when(select).goTo(coins050);
+        coins050.trans().when(coin025).goTo(coins075);
+        coins050.trans().when(coin100).goTo(coins150);
 
-        coins075.addTransition(select,  coins075);
-        coins075.addTransition(coin025, coins100);
-        coins075.addTransition(coin100, coins175);
+        coins075.trans().when(select).goTo(coins075);
+        coins075.trans().when(coin025).goTo(coins100);
+        coins075.trans().when(coin100).goTo(coins175);
         
-        coins100.addTransition(select,  coins100);
-        coins100.addTransition(coin025, coins125);
-        coins100.addTransition(coin100, coins200);
+        coins100.trans().when(select).goTo(coins100);
+        coins100.trans().when(coin025).goTo(coins125);
+        coins100.trans().when(coin100).goTo(coins200);
         
-        coins125.addTransition(select,  coins000);
-        coins125.addTransition(coin025, coins125);
-        coins125.addTransition(coin100, coins125);
+        coins125.trans().when(select).goTo(coins000);
+        coins125.trans().when(coin025).goTo(coins125);
+        coins125.trans().when(coin100).goTo(coins125);
         
-        coins150.addTransition(select,  coins000);
-        coins150.addTransition(coin025, coins150);
-        coins150.addTransition(coin100, coins150);
+        coins150.trans().when(select).goTo(coins000);
+        coins150.trans().when(coin025).goTo(coins150);
+        coins150.trans().when(coin100).goTo(coins150);
         
-        coins175.addTransition(select,  coins000);
-        coins175.addTransition(coin025, coins175);
-        coins175.addTransition(coin100, coins175);
+        coins175.trans().when(select).goTo(coins000);
+        coins175.trans().when(coin025).goTo(coins175);
+        coins175.trans().when(coin100).goTo(coins175);
         
-        coins200.addTransition(select,  coins000);
-        coins200.addTransition(coin025, coins200);
-        coins200.addTransition(coin100, coins200);
+        coins200.trans().when(select).goTo(coins000);
+        coins200.trans().when(coin025).goTo(coins200);
+        coins200.trans().when(coin100).goTo(coins200);
         
         Word word = new Word(coin025, coin025, coin025, coin025, coin025, select);
         
@@ -80,5 +80,5 @@ public class Main {
             System.out.println("Insert more coins");
         }
         
-    }
-}
+    }}
+

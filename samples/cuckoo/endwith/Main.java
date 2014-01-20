@@ -1,10 +1,10 @@
 
 package cuckoo.endwith;
 
-import cuckoo.common.DefaultSymbol;
+import cuckoo.common.Word;
 import cuckoo.common.State;
 import cuckoo.common.Symbol;
-import cuckoo.common.Word;
+import cuckoo.common.DefaultSymbol;
 import cuckoo.runners.NFARunner;
 
 public class Main {
@@ -23,17 +23,15 @@ public class Main {
         State p5 = new State("p5");
         State p6 = new State("p6", true);
         
-        q0.addTransition(a, q0);
-        q0.addTransition(b, q0);
-        q0.addTransition(c, q0);
-        q0.addTransition(a, p3);
-        q0.addTransition(b, p1);
-        q0.addTransition(c, p5);
-        
-        p1.addTransition(c, p2);
-        p3.addTransition(b, p4);
-        p5.addTransition(a, p6);
-        
+        q0.trans().when(a).when(b).when(c).goTo(q0);
+        q0.trans().when(a).goTo(p3);
+        q0.trans().when(b).goTo(p1);
+        q0.trans().when(c).goTo(p5);
+
+        p1.trans().when(c).goTo(p2);
+        p3.trans().when(b).goTo(p4);
+        p5.trans().when(a).goTo(p6);
+
         Word word0 = new Word(a, b, c, b, c); // true
         Word word1 = new Word(a, b, c, c, a); // true
         Word word2 = new Word(b, b, c, a, b); // true

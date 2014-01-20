@@ -22,10 +22,10 @@ public class Main {
         State unlocked = new State("Unlocked");
         
         // create all transitions
-        locked.addTransition(coin, unlocked);
-        locked.addTransition(push, locked);
-        unlocked.addTransition(coin, unlocked);
-        unlocked.addTransition(push, locked);
+        locked.trans().when(coin).goTo(unlocked);
+        locked.trans().when(push).goTo(locked);
+        unlocked.trans().when(coin).goTo(unlocked);
+        unlocked.trans().when(push).goTo(locked);
         
         // define a simple word
         Word word = new Word(push, push, coin, push);
