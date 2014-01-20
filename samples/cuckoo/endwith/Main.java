@@ -40,12 +40,12 @@ public class Main {
         Word word4 = new Word(a, b, c, a, c); // false
         Word word5 = new Word(b, b, c, b, a); // false       
         
-        NFARunner runner0 = new NFARunner(q0, word0);
-        NFARunner runner1 = new NFARunner(q0, word1);
-        NFARunner runner2 = new NFARunner(q0, word2);
-        NFARunner runner3 = new NFARunner(q0, word3);
-        NFARunner runner4 = new NFARunner(q0, word4);
-        NFARunner runner5 = new NFARunner(q0, word5);
+        NFARunner runner0 = new NFARunner(word0, q0);
+        NFARunner runner1 = new NFARunner(word1, q0);
+        NFARunner runner2 = new NFARunner(word2, q0);
+        NFARunner runner3 = new NFARunner(word3, q0);
+        NFARunner runner4 = new NFARunner(word4, q0);
+        NFARunner runner5 = new NFARunner(word5, q0);
         
         runner0.compute();
         runner1.compute();

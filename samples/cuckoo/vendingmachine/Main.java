@@ -70,7 +70,7 @@ public class Main {
         Word word = new Word(coin025, coin025, coin025, coin025, coin025, select);
         
         // run
-        DFARunner runner = new DFARunner(coins000, word);
+        DFARunner runner = new DFARunner(word, coins000);
         runner.compute();
         
         // interpret the result

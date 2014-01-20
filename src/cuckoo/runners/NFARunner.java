@@ -20,12 +20,12 @@ public class NFARunner {
         }
     }
     
-    private final Word word;
     private Result result;
-    private final State initial;
+    private final Word word;
+    private final State[] initial;
     private final Queue<Tuple<State, Integer>> queue;
     
-    public NFARunner(State initial, Word word) {
+    public NFARunner(Word word, State... initial) {
         this.word = word;
         this.initial = initial;
         this.queue = new LinkedList<>();
@@ -36,7 +36,9 @@ public class NFARunner {
         Symbol symbol;
         Tuple<State, Integer> current;
         
-        queue.offer(new Tuple<>(initial, 0));
+        for (State s : initial) {
+            queue.offer(new Tuple<>(s, 0));
+        }
         
         // to evaluate all transitions we use breadth-first-search
         while (!queue.isEmpty() && !isAccepted()) {

@@ -15,7 +15,7 @@ public class DFARunner {
     private final Word word;
     private State current;
     
-    public DFARunner(State initial, Word word) {
+    public DFARunner(Word word, State initial) {
         this.word = word;
         this.current = initial;
         this.result = new Result(new DeadState(), ResultType.DEAD_STATE);

@@ -31,7 +31,7 @@ public class Main {
         Word word = new Word(push, push, coin, push);
         
         // run
-        DFARunner runner = new DFARunner(locked, word);
+        DFARunner runner = new DFARunner(word, locked);
         runner.compute();
         
         // interpret the result
