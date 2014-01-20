@@ -1,74 +1,73 @@
-
 package cuckoo.runners;
 
-import cuckoo.common.Result;
-import cuckoo.common.ResultType;
-import cuckoo.common.State;
-import cuckoo.common.Symbol;
 import cuckoo.common.Word;
-import java.util.List;
-import java.util.concurrent.RecursiveAction;
+import cuckoo.common.State;
+import cuckoo.common.Result;
+import cuckoo.common.Symbol;
+import cuckoo.common.DeadState;
+import cuckoo.common.ResultType;
+import java.util.LinkedList;
+import java.util.Queue;
 
+public class NFARunner {
 
-public class NFARunner extends RecursiveAction {
-
-    private Word word;
-    private int offset;
+    private class Tuple<A,B> {
+        public final A state;
+        public final B index;
+        public Tuple(A a, B b) {
+            this.state = a;
+            this.index = b;
+        }
+    }
+    
+    private final Word word;
     private Result result;
-    private State currentState;
+    private final State initial;
+    private final Queue<Tuple<State, Integer>> queue;
     
-    public NFARunner(State startState, Word word) {
-        this(startState, word, 0);
-    }
-    
-    private NFARunner(State startState, Word word, int offset) {
-        this.result = new Result(null, ResultType.DEAD_STATE);
-        this.currentState = startState;
-        this.offset = offset;
+    public NFARunner(State initial, Word word) {
         this.word = word;
+        this.initial = initial;
+        this.queue = new LinkedList<>();
+        this.result = new Result(new DeadState(), ResultType.DEAD_STATE);
     }
 
-    @Override
-    @SuppressWarnings("empty-statement")
     public void compute() {
+        Symbol symbol;
+        Tuple<State, Integer> current;
         
-        for (int i = offset; currentState != null && i < word.size(); i++) {
-            Symbol symbol = word.get(i);
+        queue.offer(new Tuple<>(initial, 0));
+        
+        // to evaluate all transitions we use breadth-first-search
+        while (!queue.isEmpty() && !isAccepted()) {
             
-            List<State> states = currentState.compute(symbol);
+            current = queue.poll();
             
-            if (states != null) {
-                
-                if (states.size() == 1) {
-                    currentState = states.get(0);
-                    setResult(currentState);
-                } else {
-                    
-                    // at this point we duplicate your machine,
-                    // executing it as a depth-first-search algo
-                    for (State state : states) {
-                        NFARunner runner = new NFARunner(state, word, i);
-                        runner.compute();
-                        result = runner.getResult();
-                    }
+            // if true, is the end of the word
+            if (current.index < word.size()) {
+                symbol  = word.get(current.index);
+                for (State next : current.state.compute(symbol)) {
+                    queue.offer(new Tuple<>(next, current.index + 1));
                 }
+            } else {
+                setResult(current.state);
             }
         }
-        
-        setResult(currentState);        
+
     }
 
-    private void setResult(State currentState) {
-        if (currentState != null) {
-            if (currentState.isFinal()) {
-                result = new Result(currentState, ResultType.ACCECPTED);
+    private void setResult(State current) {
+        if (!current.equals(new DeadState())) {
+            if (current.isFinal()) {
+                result = new Result(current, ResultType.ACCECPTED);
             } else {
-                result = new Result(currentState, ResultType.REJECTED);
+                result = new Result(current, ResultType.REJECTED);
             }
         }
-        // else
-        // the currentState is null, so we don't need to change anything
-        /// since we contruct the object as a null State and DEAD_STATE;
+    }
+
+    private boolean isAccepted() {
+        return result.getResult() == ResultType.ACCECPTED;
     }
     
     public Result getResult() {
