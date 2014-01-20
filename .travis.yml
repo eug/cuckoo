@@ -1,2 +1,6 @@
 language: java
-ant -f build.xml
+jdk:
+  - oraclejdk7
+  - openjdk7
+  - openjdk6
+script: ant -f build.xml
