@@ -4,8 +4,8 @@ package cuckoo.classicaldpda;
 import cuckoo.common.Word;
 import cuckoo.common.State;
 import cuckoo.common.Symbol;
-import cuckoo.common.Epsilon;
-import cuckoo.common.DefaultSymbol;
+import cuckoo.utils.Epsilon;
+import cuckoo.utils.DefaultSymbol;
 import cuckoo.runners.DPDARunner;
 
 /**

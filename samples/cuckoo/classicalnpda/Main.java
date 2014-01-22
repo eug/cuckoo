@@ -1,12 +1,12 @@
 
 package cuckoo.classicalnpda;
 
-import cuckoo.common.DefaultSymbol;
-import cuckoo.common.Epsilon;
+import cuckoo.utils.DefaultSymbol;
+import cuckoo.utils.Epsilon;
 import cuckoo.common.State;
 import cuckoo.common.Symbol;
 import cuckoo.common.Word;
-import cuckoo.runners.NPDARunner;
+//import cuckoo.runners.NPDARunner;
 
 public class Main {
     public static void main(String[] args) {
@@ -28,7 +28,7 @@ public class Main {
         
         Word word = new Word(zero, zero, one, one, zero, zero);
         
-        NPDARunner runner = new NPDARunner(word, q1);
-        runner.compute();
+//        NPDARunner runner = new NPDARunner(word, q1);
+//        runner.compute();
     }
 }

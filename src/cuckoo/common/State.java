@@ -1,6 +1,8 @@
 
 package cuckoo.common;
 
+import cuckoo.utils.Epsilon;
+import cuckoo.utils.DeadState;
 import java.util.List;
 import java.util.Objects;
 import java.util.ArrayList;

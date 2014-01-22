@@ -48,6 +48,8 @@ public class DPDARunner extends AbstractDeterministicRunner {
                 }
 
                 // update the cursor to the next state
+                // we only transfer to another state,
+                // iff it was possible to pop or push a symbol
                 if (changed) {
                     current = getNextState(t);
                     changed = false;

@@ -4,7 +4,7 @@ import cuckoo.common.Word;
 import cuckoo.common.State;
 import cuckoo.common.Result;
 import cuckoo.common.Symbol;
-import cuckoo.common.DeadState;
+import cuckoo.utils.DeadState;
 import cuckoo.common.ResultType;
 import java.util.LinkedList;
 import java.util.Queue;

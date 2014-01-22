@@ -6,7 +6,7 @@ import cuckoo.common.State;
 import cuckoo.common.Symbol;
 import cuckoo.common.Result;
 import cuckoo.common.ResultType;
-import cuckoo.common.DeadState;
+import cuckoo.utils.DeadState;
 import java.util.List;
 
 public class DFARunner {

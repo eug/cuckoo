@@ -1,7 +1,7 @@
 
 package cuckoo.turnstile;
 
-import cuckoo.common.DefaultSymbol;
+import cuckoo.utils.DefaultSymbol;
 import cuckoo.common.State;
 import cuckoo.common.Symbol;
 import cuckoo.common.Word;

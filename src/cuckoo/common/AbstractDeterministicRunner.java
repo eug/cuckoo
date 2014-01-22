@@ -1,6 +1,7 @@
 
 package cuckoo.common;
 
+import cuckoo.utils.DeadState;
 import java.util.List;
 import java.util.Set;
 

@@ -1,6 +1,8 @@
 
-package cuckoo.common;
+package cuckoo.utils;
 
+import cuckoo.common.State;
+import cuckoo.common.Symbol;
 import java.util.List;
 import java.util.ArrayList;
 
