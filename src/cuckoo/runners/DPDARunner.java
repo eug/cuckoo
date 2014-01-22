@@ -57,7 +57,6 @@ public class DPDARunner extends AbstractDeterministicRunner {
             }
         }
         
-        setResult();
     }
     
 }

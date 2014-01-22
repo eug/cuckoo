@@ -3,21 +3,21 @@ package cuckoo.common;
 
 import cuckoo.utils.DeadState;
 
-public abstract class AbstractDeterministicRunner extends AbstractRunner {
+public abstract class AbstractNonDeterministicRunner extends AbstractRunner {
     
     protected Result result;
-    protected State current;
+    protected State[] initial;
     protected final Word word;
+    protected State lastState;
     
-    public AbstractDeterministicRunner(Word word, State intial) {
+    public AbstractNonDeterministicRunner(Word word, State... intial) {
         this.word = word;
-        this.current = intial;
+        this.initial = intial;
         this.result = new Result(new DeadState(), ResultType.DEAD_STATE);
     }
     
     @Override
     public Result getResult() {
-        return defineResult(current);
+        return defineResult(lastState);
     }
-    
 }
