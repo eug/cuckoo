@@ -18,6 +18,9 @@ public class State {
     
     private final List<State> output;
 
+    // just a cached reference
+    private final Symbol epsilon;
+    
     public State(String label) {
         this(label, false);
     }
@@ -25,6 +28,7 @@ public class State {
     public State(String label, boolean isFinal) {
         this.label = label;
         this.isFinal = isFinal;
+        this.epsilon = new Epsilon();
         this.output = new ArrayList<>();
         this.transition = new ArrayList<>();
     }
@@ -62,11 +66,11 @@ public class State {
         return output;
     }
 
-    private List<Transition> getTransitions(Symbol symbol) {
+    public List<Transition> getTransitions(Symbol symbol) {
         List<Transition> trans = new LinkedList<>();
         for (Transition t : transition) {
             for (Symbol s : t.getKnownSymbols()) {
-                if (s.equals(symbol)) {
+                if (s.equals(symbol) || s.equals(epsilon)) {
                     trans.add(t);
                 }
             }
@@ -106,6 +110,11 @@ public class State {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "State{" + "label=" + label + ", transition=" + transition + '}';
     }
     
 }

@@ -1,40 +1,42 @@
 
 package cuckoo.common;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.List;
+import java.util.HashSet;
+import java.util.ArrayList;
 
 public class Transition {
     
     // store all possible symbols which can be consumed by this state
     private final Set<Symbol> knownSymbols;
     
-    private final Set<Symbol> pushable;
+    private final List<Symbol> pushable;
     
-    private final Set<Symbol> popable;
+    private final List<Symbol> popable;
     
     private State nextState;
 
     public Transition() {
         knownSymbols = new HashSet<>();
-        pushable = new HashSet<>();
-        popable = new HashSet<>();
+        pushable = new ArrayList<>();
+        popable = new ArrayList<>();
     }
 
     Set<Symbol> getKnownSymbols() {
         return knownSymbols;
     }
 
-    State getNextState() {
-        return nextState;
-    }
-
-    Set<Symbol> getPushable() {
+    List<Symbol> getPushable() {
         return pushable;
     }
 
-    Set<Symbol> getPopable() {
+    List<Symbol> getPopable() {
         return popable;
+    }
+    
+    State getNextState() {
+        return nextState;
     }
     
     public Transition when(Symbol symbol) {
@@ -56,5 +58,17 @@ public class Transition {
         popable.add(symbol);
         return this;
     }
+    
+//    public Transition write(Symbol symbol) {
+//        return this;
+//    }
+//    
+//    public Transition rigth() {
+//        return this;
+//    }
+//    
+//    public Transition left() {
+//        return this;
+//    }
     
 }
