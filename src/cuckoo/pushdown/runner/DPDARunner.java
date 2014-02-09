@@ -30,34 +30,43 @@ public class DPDARunner {
      *      3) move to next state if something changed 
      */
     public void compute() {
-        boolean changed = false;
-
+        
         for (Symbol symbol : word) {
             
-            PTransition trans = current.getTransition(symbol);
-                
-            for (Symbol s : trans.toPop()) {
-                if (!stack.isEmpty() && s.equals(stack.peek())) {
-                    stack.pop();
-                    changed = true;
-                }
+            computeTransition(current.getTransition(symbol));
+            
+            for (PTransition t : current.getEpsilonTransitions()) {
+                // if more than one epsilon transition is given,
+                // the automaton will change the current state for
+                // the first valid epsilon transition.
+                computeTransition(t);
             }
+        }
 
-            // after we pop out some symbols, now we can push some new ones
-            for (Symbol s : trans.toPush()) {
-                stack.push(s);
+    }
+
+    private void computeTransition(PTransition trans) {
+        boolean changed = false;
+        
+        for (Symbol s : trans.toPop()) {
+            if (!stack.isEmpty() && s.equals(stack.peek())) {
+                stack.pop();
                 changed = true;
-            }
-
-            // update the cursor to the next state
-            // we only transfer to another state,
-            // iff it was possible to pop or push a symbol
-            if (changed) {
-                current = trans.getNext();
-                changed = false;
             }
         }
         
+        // after we pop out some symbols, now we can push some new ones
+        for (Symbol s : trans.toPush()) {
+            stack.push(s);
+            changed = true;
+        }
+        
+        // update the cursor to the next state
+        // we only transfer to another state,
+        // iff it was possible to pop or push a symbol
+        if (changed) {
+            current = trans.getNext();
+        }
     }
     
     public Result<PState> getResult() {
