@@ -1,5 +1,4 @@
 
-
 package cuckoo.finite;
 
 import cuckoo.common.Word;
@@ -10,11 +9,7 @@ import cuckoo.finite.runner.DFARunner;
 import cuckoo.finite.runner.NFARunner;
 import cuckoo.utils.DefaultSymbol;
 import org.junit.Test;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import junit.framework.Assert;
+import static org.junit.Assert.*;
 
 /**
  *
@@ -22,20 +17,6 @@ import junit.framework.Assert;
  */
 public class ExamplesFinite {
     
-    public ExamplesFinite() {}
-    
-    @BeforeClass
-    public static void setUpClass() {}
-    
-    @AfterClass
-    public static void tearDownClass() {}
-    
-    @Before
-    public void setUp() {}
-    
-    @After
-    public void tearDown() {}
-
      @Test
      public void endwithExample() {
         Symbol a = new DefaultSymbol("a");
@@ -81,18 +62,18 @@ public class ExamplesFinite {
         runner4.compute();
         runner5.compute();
         
-        Assert.assertEquals(runner0.getResult().getResultType(), ResultType.ACCECPTED);
-        Assert.assertEquals(runner0.getResult().getState(), p2);
+        assertEquals(runner0.getResult().getResultType(), ResultType.ACCECPTED);
+        assertEquals(runner0.getResult().getState(), p2);
         
-        Assert.assertEquals(runner1.getResult().getResultType(), ResultType.ACCECPTED);
-        Assert.assertEquals(runner1.getResult().getState(), p6);
+        assertEquals(runner1.getResult().getResultType(), ResultType.ACCECPTED);
+        assertEquals(runner1.getResult().getState(), p6);
         
-        Assert.assertEquals(runner2.getResult().getResultType(), ResultType.ACCECPTED);
-        Assert.assertEquals(runner2.getResult().getState(), p4);
+        assertEquals(runner2.getResult().getResultType(), ResultType.ACCECPTED);
+        assertEquals(runner2.getResult().getState(), p4);
         
-        Assert.assertEquals(runner3.getResult().getResultType(), ResultType.REJECTED);
-        Assert.assertEquals(runner4.getResult().getResultType(), ResultType.REJECTED);
-        Assert.assertEquals(runner5.getResult().getResultType(), ResultType.REJECTED);
+        assertEquals(runner3.getResult().getResultType(), ResultType.REJECTED);
+        assertEquals(runner4.getResult().getResultType(), ResultType.REJECTED);
+        assertEquals(runner5.getResult().getResultType(), ResultType.REJECTED);
      }
      
     @Test
@@ -129,12 +110,12 @@ public class ExamplesFinite {
         runner4.compute();
         runner5.compute();
         
-        Assert.assertEquals(runner0.getResult().getState(), locked);
-        Assert.assertEquals(runner1.getResult().getState(), unlocked);
-        Assert.assertEquals(runner2.getResult().getState(), unlocked);
-        Assert.assertEquals(runner3.getResult().getState(), locked);
-        Assert.assertEquals(runner4.getResult().getState(), unlocked);
-        Assert.assertEquals(runner5.getResult().getState(), locked);
+        assertEquals(runner0.getResult().getState(), locked);
+        assertEquals(runner1.getResult().getState(), unlocked);
+        assertEquals(runner2.getResult().getState(), unlocked);
+        assertEquals(runner3.getResult().getState(), locked);
+        assertEquals(runner4.getResult().getState(), unlocked);
+        assertEquals(runner5.getResult().getState(), locked);
     }
     
     @Test
@@ -210,16 +191,16 @@ public class ExamplesFinite {
         runner3.compute();
         runner4.compute();
         
-        Assert.assertEquals(runner0.getResult().getResultType(), ResultType.REJECTED);
-        Assert.assertEquals(runner1.getResult().getResultType(), ResultType.REJECTED);
+        assertEquals(runner0.getResult().getResultType(), ResultType.REJECTED);
+        assertEquals(runner1.getResult().getResultType(), ResultType.REJECTED);
         
-        Assert.assertEquals(runner2.getResult().getResultType(), ResultType.ACCECPTED);
-        Assert.assertEquals(runner2.getResult().getState(), coins125);
+        assertEquals(runner2.getResult().getResultType(), ResultType.ACCECPTED);
+        assertEquals(runner2.getResult().getState(), coins125);
 
-        Assert.assertEquals(runner3.getResult().getResultType(), ResultType.ACCECPTED);
-        Assert.assertEquals(runner3.getResult().getState(), coins125);
+        assertEquals(runner3.getResult().getResultType(), ResultType.ACCECPTED);
+        assertEquals(runner3.getResult().getState(), coins125);
 
-        Assert.assertEquals(runner4.getResult().getResultType(), ResultType.ACCECPTED);
-        Assert.assertEquals(runner4.getResult().getState(), coins125);
+        assertEquals(runner4.getResult().getResultType(), ResultType.ACCECPTED);
+        assertEquals(runner4.getResult().getState(), coins125);
     }
 }
