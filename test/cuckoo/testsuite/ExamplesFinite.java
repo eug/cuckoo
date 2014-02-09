@@ -1,5 +1,5 @@
 
-package cuckoo.finite;
+package cuckoo.testsuite;
 
 import cuckoo.common.Word;
 import cuckoo.common.Symbol;

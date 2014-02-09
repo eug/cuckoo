@@ -1,4 +1,4 @@
-package cuckoo.pushdown;
+package cuckoo.testsuite;
 
 import cuckoo.common.Word;
 import cuckoo.common.Symbol;
