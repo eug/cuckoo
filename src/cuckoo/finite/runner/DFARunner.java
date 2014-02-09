@@ -4,7 +4,6 @@ package cuckoo.finite.runner;
 import cuckoo.common.Word;
 import cuckoo.common.Symbol;
 import cuckoo.common.Result;
-import cuckoo.common.ResultType;
 import cuckoo.finite.common.FState;
 import cuckoo.finite.common.FTransition;
 
@@ -26,11 +25,7 @@ public class DFARunner {
     }
     
     public Result<FState> getResult() {
-        if (current.isFinalState()) {
-            return new Result<>(current, ResultType.ACCECPTED);
-        } else {
-            return new Result<>(current, ResultType.REJECTED);
-        }
+        return new Result<>(current);
     }
 
 }

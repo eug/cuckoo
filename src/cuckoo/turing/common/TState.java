@@ -1,12 +1,12 @@
 
 package cuckoo.turing.common;
 
-import cuckoo.common.State;
+import cuckoo.common.AbstractState;
 import cuckoo.common.Symbol;
 import java.util.LinkedList;
 import java.util.List;
 
-public class TState extends State {
+public class TState extends AbstractState {
     
     private final LinkedList<TTransition> transitions;
 

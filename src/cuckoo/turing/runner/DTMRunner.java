@@ -1,10 +1,9 @@
 
 package cuckoo.turing.runner;
 
-import cuckoo.common.Result;
-import cuckoo.common.ResultType;
 import cuckoo.common.Word;
 import cuckoo.common.Symbol;
+import cuckoo.common.Result;
 import cuckoo.turing.common.TState;
 import cuckoo.turing.common.TTransition;
 
@@ -23,7 +22,7 @@ public class DTMRunner {
         this.word = word;
         this.offset = offset;
         this.initial = initial;
-        this.result = new Result(new TState("Dead State"), ResultType.REJECTED);
+        this.result = new Result(new TState("Dead State"));
     }
     
     public void compute() {
@@ -53,15 +52,7 @@ public class DTMRunner {
             
         }
         
-        setResult(current);
-    }
-    
-    private void setResult(TState state) {
-        if (state.isFinalState()) {
-            result = new Result(null, ResultType.ACCECPTED);
-        } else {
-            result = new Result(null, ResultType.REJECTED);
-        }
+        result = new Result(current);
     }
     
     public Result getResult() {

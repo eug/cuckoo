@@ -70,11 +70,7 @@ public class DPDARunner {
     }
     
     public Result<PState> getResult() {
-        if (current.isFinalState()) {
-            return new Result<>(current, ResultType.ACCECPTED);
-        } else {
-            return new Result<>(current, ResultType.REJECTED);
-        }
+        return new Result<>(current);
     }
     
 }

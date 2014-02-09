@@ -1,14 +1,14 @@
 
 package cuckoo.finite.common;
 
-import cuckoo.common.State;
+import cuckoo.common.AbstractState;
 import cuckoo.common.Symbol;
 import cuckoo.utils.Epsilon;
 import java.util.List;
 import java.util.Objects;
 import java.util.LinkedList;
 
-public class FState extends State {
+public class FState extends AbstractState {
 
     private final LinkedList<FTransition> transition;
 

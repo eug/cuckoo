@@ -73,10 +73,6 @@ public class NFARunner {
     }
 
     public Result<FState> getResult() {
-        if (current.state.isFinalState()) {
-            return new Result<>(current.state, ResultType.ACCECPTED);
-        } else {
-            return new Result<>(current.state, ResultType.REJECTED);
-        }
+        return new Result<>(current.state);
     }
 }

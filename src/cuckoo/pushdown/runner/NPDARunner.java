@@ -108,10 +108,6 @@ public class NPDARunner {
     }
     
     public Result<PState> getResult() {
-        if (current.state.isFinalState()) {
-            return new Result<>(current.state, ResultType.ACCECPTED);
-        } else {
-            return new Result<>(current.state, ResultType.REJECTED);
-        }
+        return new Result<>(current.state);
     }
 }
