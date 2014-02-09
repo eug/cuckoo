@@ -1,13 +1,13 @@
 
-package cuckoo.endwith;
+package cuckoo.finite;
 
 import cuckoo.common.Word;
-import cuckoo.common.State;
 import cuckoo.common.Symbol;
+import cuckoo.finite.common.FState;
+import cuckoo.finite.runner.NFARunner;
 import cuckoo.utils.DefaultSymbol;
-import cuckoo.runners.NFARunner;
 
-public class Main {
+public class EndWith {
     // An NFA for the language of all strings over {a, b, c}
     // that end with one of ab, bc, and ca
     public static void main(String[] args) {
@@ -15,14 +15,14 @@ public class Main {
         Symbol b = new DefaultSymbol("b");
         Symbol c = new DefaultSymbol("c");
         
-        State q0 = new State("q0");
-        State p1 = new State("p1");
-        State p2 = new State("p2", true);
-        State p3 = new State("p3");
-        State p4 = new State("p4", true);
-        State p5 = new State("p5");
-        State p6 = new State("p6", true);
-        
+        FState q0 = new FState("q0");
+        FState p1 = new FState("p1");
+        FState p2 = new FState("p2", true);
+        FState p3 = new FState("p3");
+        FState p4 = new FState("p4", true);
+        FState p5 = new FState("p5");
+        FState p6 = new FState("p6", true);
+       
         q0.trans().when(a).when(b).when(c).goTo(q0);
         q0.trans().when(a).goTo(p3);
         q0.trans().when(b).goTo(p1);
@@ -53,12 +53,25 @@ public class Main {
         runner3.compute();
         runner4.compute();
         runner5.compute();
+
+        System.out.println(runner0.getResult().getState().getLabel());
+        System.out.println(runner1.getResult().getState().getLabel());
+        System.out.println(runner2.getResult().getState().getLabel());
+//        Assert(runner0.getResult(), ResultType.ACCECPTED, "p2");
+//        Assert(runner1.getResult(), ResultType.ACCECPTED, "p6");
+//        Assert(runner2.getResult(), ResultType.ACCECPTED, "p4");
         
-        System.out.println(runner0.getResult().getState().getLabel().equals("p2"));
-        System.out.println(runner1.getResult().getState().getLabel().equals("p6"));
-        System.out.println(runner2.getResult().getState().getLabel().equals("p4"));
-        System.out.println(runner3.getResult().getState().getLabel().equals("p1"));
-        System.out.println(runner4.getResult().getState().getLabel().equals("p5"));
-        System.out.println(runner5.getResult().getState().getLabel().equals("p3"));
+//        Assert(runner3.getResult(), ResultType.DEAD_STATE, "Dead State");
+//        Assert(runner4.getResult(), ResultType.DEAD_STATE, "Dead State");
+//        Assert(runner5.getResult(), ResultType.DEAD_STATE, "Dead State");
     }
+    
+//    private static void Assert(Result rt, ResultType rtExpected, String strExpected) {
+//        if (rt.getResultType() != rtExpected) {
+//            throw new RuntimeException("Assertion error : " + rt + " should be " + rtExpected);
+//        }
+//        if (rt.getState().getLabel().compareTo(strExpected) != 0) {
+//            throw new RuntimeException("Assertion error : " + rt + " should be " + strExpected);
+//        }
+//    }
 }

@@ -1,21 +1,21 @@
 
 package cuckoo.common;
 
-public class Result {
+public class Result<S> {
 
     private final ResultType result;
-    private final State state;
+    private final S state;
     
-    public Result(State state, ResultType result) {
+    public Result(S state, ResultType result) {
         this.result = result;
         this.state = state;
     }
 
-    public ResultType getResult() {
+    public ResultType getResultType() {
         return result;
     }
 
-    public State getState() {
+    public S getState() {
         return state;
     }
     

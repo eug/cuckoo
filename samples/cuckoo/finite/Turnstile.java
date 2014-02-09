@@ -1,25 +1,25 @@
 
-package cuckoo.turnstile;
+package cuckoo.finite;
 
-import cuckoo.utils.DefaultSymbol;
-import cuckoo.common.State;
-import cuckoo.common.Symbol;
 import cuckoo.common.Word;
-import cuckoo.runners.DFARunner;
+import cuckoo.common.Symbol;
+import cuckoo.utils.DefaultSymbol;
+import cuckoo.finite.common.FState;
+import cuckoo.finite.runner.DFARunner;
 
 /**
  *
  * @author eugf
  */
-public class Main {
+public class Turnstile {
     public static void main(String[] args) {
         // create all symbols
         Symbol coin = new DefaultSymbol("Coin");
         Symbol push = new DefaultSymbol("Push");
         
         // create all states
-        State locked   = new State("Locked");
-        State unlocked = new State("Unlocked");
+        FState locked   = new FState("Locked");
+        FState unlocked = new FState("Unlocked");
         
         // create all transitions
         locked.trans().when(coin).goTo(unlocked);

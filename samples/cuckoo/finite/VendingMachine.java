@@ -1,17 +1,17 @@
 
-package cuckoo.vendingmachine;
+package cuckoo.finite;
 
 import cuckoo.common.Word;
-import cuckoo.common.State;
 import cuckoo.common.Symbol;
+import cuckoo.finite.common.FState;
 import cuckoo.utils.DefaultSymbol;
-import cuckoo.runners.DFARunner;
+import cuckoo.finite.runner.DFARunner;
 
 /**
  *
  * @author eugf
  */
-public class Main {
+public class VendingMachine {
     public static void main(String[] args) {
         // create all symbols
         Symbol coin025 = new DefaultSymbol("$0.25");
@@ -19,16 +19,15 @@ public class Main {
         Symbol select  = new DefaultSymbol("Select");
         
         // create all states
-        State coins000 = new State("$0.00", false);
-        State coins025 = new State("$0.25", false);
-        State coins050 = new State("$0.50", false);
-        State coins075 = new State("$0.75", false);
-        State coins100 = new State("$1.00", false);
-        State coins125 = new State("$1.25", true);
-        State coins150 = new State("$1.50", true);
-        State coins175 = new State("$1.75", true);
-        State coins200 = new State("$2.00", true);
-        
+        FState coins000 = new FState("$0.00", false);
+        FState coins025 = new FState("$0.25", false);
+        FState coins050 = new FState("$0.50", false);
+        FState coins075 = new FState("$0.75", false);
+        FState coins100 = new FState("$1.00", false);
+        FState coins125 = new FState("$1.25", true);
+        FState coins150 = new FState("$1.50", true);
+        FState coins175 = new FState("$1.75", true);
+        FState coins200 = new FState("$2.00", true);
         
         // create all transitions
         coins000.trans().when(select).goTo(coins000);
@@ -74,7 +73,7 @@ public class Main {
         runner.compute();
         
         // interpret the result
-        if (runner.getResult().getState().isFinal()) {
+        if (runner.getResult().getState().isFinalState()) {
             System.out.println("Here is your Coke!");
         } else {
             System.out.println("Insert more coins");

@@ -1,27 +1,16 @@
 
 package cuckoo.utils;
 
-import cuckoo.common.State;
-import cuckoo.common.Symbol;
-import java.util.List;
-import java.util.ArrayList;
+import cuckoo.finite.common.FState;
 
 /**
  *
  * @author eugf
  */
-public class DeadState extends State {
-
-    private final List<State> emptyList;
+public class DeadState extends FState {
     
     public DeadState() {
         super("Dead State");
-        emptyList = new ArrayList<>();
-    }
-    
-    @Override
-    public List<State> compute(Symbol symbol) {
-        return emptyList;
     }
     
 }
