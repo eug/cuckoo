@@ -36,7 +36,6 @@ public class NPDARunner {
 
     /**
      * Compute!.
-     *
      * enqueue all initial states while queue is not empty do
      * 1) dequeue one state
      * 2) process all epsilon transitions
@@ -57,15 +56,19 @@ public class NPDARunner {
                 computeTransition(trans, true);            
             }
             
-            if (!isEndOfWord()) {
-                Symbol symbol = word.get(current.index);
-                for (PTransition trans : current.state.getTransitions(symbol)) {
-                    computeTransition(trans, false);
-                }
-            }
+            if (isEndOfWord()) { continue; }
             
-            else if (current.state.isFinalState()) {
-                break;
+            Symbol symbol = word.get(current.index);
+
+            for (PTransition t : current.state.getTransitions(symbol)) {
+                computeTransition(t, false);
+            }
+
+            // the current state doesn't have any transition associated?
+            if (current.state.getTransitions().isEmpty()) {
+                PState deadState = new PState("Dead State", false);
+                current = new ThreeUple<>(deadState, null, -1);
+                break;                    
             }
             
         } while (!queue.isEmpty());

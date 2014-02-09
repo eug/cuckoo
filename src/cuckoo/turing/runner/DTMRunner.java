@@ -8,10 +8,6 @@ import cuckoo.common.Symbol;
 import cuckoo.turing.common.TState;
 import cuckoo.turing.common.TTransition;
 
-/**
- *
- * @author eugf
- */
 public class DTMRunner {
 
     private final TState initial;
@@ -19,15 +15,15 @@ public class DTMRunner {
     private final int offset;
     private Result result;
     
-    public DTMRunner(TState initial, Word word) {
-        this(initial, word, 0);
+    public DTMRunner(Word word, TState initial) {
+        this(word, 0, initial);
     }
     
-    public DTMRunner(TState initial, Word word, int offset) {
-        this.initial = initial;
+    public DTMRunner(Word word, int offset, TState initial) {
         this.word = word;
         this.offset = offset;
-        this.result = new Result(null, ResultType.REJECTED);
+        this.initial = initial;
+        this.result = new Result(new TState("Dead State"), ResultType.REJECTED);
     }
     
     public void compute() {

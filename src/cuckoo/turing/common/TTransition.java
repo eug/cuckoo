@@ -1,10 +1,10 @@
 
 package cuckoo.turing.common;
 
+import cuckoo.utils.Epsilon;
 import cuckoo.common.Symbol;
 import cuckoo.common.Transition;
 import java.util.Objects;
-import cuckoo.utils.Epsilon;
 
 
 public class TTransition implements Transition<TState> {

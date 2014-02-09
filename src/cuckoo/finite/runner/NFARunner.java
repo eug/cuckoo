@@ -40,7 +40,6 @@ public class NFARunner {
         do {
             current = queue.poll();
 
-            // if false, is the end of the word
             if (isEndOfWord()) {
                 if (current.state.isFinalState()) {
                     break;
@@ -66,7 +65,6 @@ public class NFARunner {
     private void enqueueTransition(FTransition trans, boolean isEpsilon) {
         FState state = trans.getNext();
         int index = current.index + ((isEpsilon) ? 0 : 1);
-
         queue.offer(new Tuple<>(state, index));
     }
     

@@ -8,10 +8,6 @@ import java.util.Objects;
 import java.util.LinkedList;
 import java.util.LinkedHashSet;
 
-/**
- *
- * @author eugf
- */
 public class PTransition implements Transition<PState> {
     
     private final LinkedHashSet<Symbol> knwonSymbols;

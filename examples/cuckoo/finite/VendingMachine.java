@@ -7,10 +7,6 @@ import cuckoo.finite.common.FState;
 import cuckoo.utils.DefaultSymbol;
 import cuckoo.finite.runner.DFARunner;
 
-/**
- *
- * @author eugf
- */
 public class VendingMachine {
     public static void main(String[] args) {
         // create all symbols
@@ -79,5 +75,6 @@ public class VendingMachine {
             System.out.println("Insert more coins");
         }
         
-    }}
+    }
+}
 

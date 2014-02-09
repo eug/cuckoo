@@ -3,13 +3,9 @@ package cuckoo.finite.common;
 
 import cuckoo.common.Symbol;
 import cuckoo.common.Transition;
-import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.LinkedHashSet;
 
-/**
- *
- * @author eugf
- */
 public class FTransition implements Transition<FState> {
     
     private final LinkedHashSet<Symbol> knwonSymbols;

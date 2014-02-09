@@ -6,8 +6,8 @@ import cuckoo.common.ResultType;
 import cuckoo.pushdown.common.PState;
 import cuckoo.pushdown.runner.DPDARunner;
 import cuckoo.pushdown.runner.NPDARunner;
-import cuckoo.utils.DefaultSymbol;
 import cuckoo.utils.Epsilon;
+import cuckoo.utils.DefaultSymbol;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -42,7 +42,6 @@ public class ExamplesPushdown {
         Word word2 = new Word(zero, zero, zero, one, one, one);
         Word word3 = new Word(zero, zero, one, one);
         Word word4 = new Word(zero, one);
-        
         
         DPDARunner runner0 = new DPDARunner(word0, q0);
         DPDARunner runner1 = new DPDARunner(word1, q0);
@@ -99,9 +98,8 @@ public class ExamplesPushdown {
         runner3.compute();
         
         assertEquals(runner0.getResult().getResultType(), ResultType.ACCECPTED);
-//        System.out.println(runner1.getResult().getState());
-//        assertEquals(runner1.getResult().getResultType(), ResultType.REJECTED);
-//        assertEquals(runner2.getResult().getResultType(), ResultType.REJECTED);
-//        assertEquals(runner3.getResult().getResultType(), ResultType.REJECTED);
+        assertEquals(runner1.getResult().getResultType(), ResultType.REJECTED);
+        assertEquals(runner2.getResult().getResultType(), ResultType.REJECTED);
+        assertEquals(runner3.getResult().getResultType(), ResultType.REJECTED);
     }
 }

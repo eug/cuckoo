@@ -7,10 +7,6 @@ import cuckoo.turing.common.TState;
 import cuckoo.turing.runner.DTMRunner;
 import cuckoo.utils.DefaultSymbol;
 
-/**
- *
- * @author eugf
- */
 public class Main {
     public static void main(String[] args) {
         Symbol one  = new DefaultSymbol("1");
@@ -30,11 +26,11 @@ public class Main {
         q2.trans().reads(zero).write(zero).left().goTo(q0);
         q2.trans().reads(one).write(one).right().goTo(q0);
         
-        Word word = new Word(zero, one, zero, zero, one, one, one, zero, one);
+        Word word0 = new Word(zero, one, zero, zero, one, one, one, zero, one);
         
-        DTMRunner runner = new DTMRunner(q0, word, 4);
-        runner.compute();
+        DTMRunner runner0 = new DTMRunner(word0, 4, q0);
+        runner0.compute();
         
-        System.out.println(runner.getResult().getResultType());
+        System.out.println("Word: " + word0 + "\twas " + runner0.getResult().getResultType());
     }
 }

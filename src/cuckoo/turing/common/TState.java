@@ -6,10 +6,6 @@ import cuckoo.common.Symbol;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- *
- * @author eugf
- */
 public class TState extends State {
     
     private final LinkedList<TTransition> transitions;

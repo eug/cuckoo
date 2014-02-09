@@ -3,10 +3,6 @@ package cuckoo.utils;
 
 import cuckoo.common.Symbol;
 
-/**
- *
- * @author eugf
- */
 public class Epsilon extends Symbol {
 
     public Epsilon() {

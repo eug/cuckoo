@@ -7,10 +7,6 @@ import cuckoo.utils.DefaultSymbol;
 import cuckoo.finite.common.FState;
 import cuckoo.finite.runner.DFARunner;
 
-/**
- *
- * @author eugf
- */
 public class Turnstile {
     public static void main(String[] args) {
         // create all symbols

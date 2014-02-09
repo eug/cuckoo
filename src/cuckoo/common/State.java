@@ -1,11 +1,6 @@
 
 package cuckoo.common;
 
-
-/**
- *
- * @author eugf
- */
 public abstract class State {
 
     protected final String label;

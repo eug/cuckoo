@@ -4,14 +4,10 @@ package cuckoo.pushdown.common;
 import cuckoo.common.State;
 import cuckoo.common.Symbol;
 import cuckoo.utils.Epsilon;
-import java.util.LinkedList;
-import java.util.Objects;
 import java.util.List;
+import java.util.Objects;
+import java.util.LinkedList;
 
-/**
- *
- * @author eugf
- */
 public class PState extends State {
 
     private final LinkedList<PTransition> transition;

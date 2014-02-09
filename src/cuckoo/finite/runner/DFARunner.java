@@ -19,11 +19,8 @@ public class DFARunner {
     }
     
     public void compute() {
-        
         for (Symbol symbol : word) {
-            
             FTransition trans = current.getTransition(symbol);
-            
             current = trans.getNext();
         }
     }

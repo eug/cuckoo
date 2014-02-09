@@ -8,13 +8,13 @@ import cuckoo.finite.runner.NFARunner;
 import cuckoo.utils.DefaultSymbol;
 
 public class EndWith {
-    // An NFA for the language of all strings over {a, b, c}
-    // that end with one of ab, bc, and ca
     public static void main(String[] args) {
+        // create all symbols
         Symbol a = new DefaultSymbol("a");
         Symbol b = new DefaultSymbol("b");
         Symbol c = new DefaultSymbol("c");
         
+        // create all states
         FState q0 = new FState("q0");
         FState p1 = new FState("p1");
         FState p2 = new FState("p2", true);
@@ -22,7 +22,8 @@ public class EndWith {
         FState p4 = new FState("p4", true);
         FState p5 = new FState("p5");
         FState p6 = new FState("p6", true);
-       
+        
+        // create all transitions
         q0.trans().when(a).when(b).when(c).goTo(q0);
         q0.trans().when(a).goTo(p3);
         q0.trans().when(b).goTo(p1);
@@ -32,14 +33,15 @@ public class EndWith {
         p3.trans().when(b).goTo(p4);
         p5.trans().when(a).goTo(p6);
 
-        Word word0 = new Word(a, b, c, b, c); // true
-        Word word1 = new Word(a, b, c, c, a); // true
-        Word word2 = new Word(b, b, c, a, b); // true
+        // define all words
+        Word word0 = new Word(a, b, c, b, c);
+        Word word1 = new Word(a, b, c, c, a);
+        Word word2 = new Word(b, b, c, a, b);
+        Word word3 = new Word(a, b, c, c, b);
+        Word word4 = new Word(a, b, c, a, c);
+        Word word5 = new Word(b, b, c, b, a);      
         
-        Word word3 = new Word(a, b, c, c, b); // false
-        Word word4 = new Word(a, b, c, a, c); // false
-        Word word5 = new Word(b, b, c, b, a); // false       
-        
+        // run
         NFARunner runner0 = new NFARunner(word0, q0);
         NFARunner runner1 = new NFARunner(word1, q0);
         NFARunner runner2 = new NFARunner(word2, q0);
@@ -53,25 +55,13 @@ public class EndWith {
         runner3.compute();
         runner4.compute();
         runner5.compute();
-
-        System.out.println(runner0.getResult().getState().getLabel());
-        System.out.println(runner1.getResult().getState().getLabel());
-        System.out.println(runner2.getResult().getState().getLabel());
-//        Assert(runner0.getResult(), ResultType.ACCECPTED, "p2");
-//        Assert(runner1.getResult(), ResultType.ACCECPTED, "p6");
-//        Assert(runner2.getResult(), ResultType.ACCECPTED, "p4");
         
-//        Assert(runner3.getResult(), ResultType.DEAD_STATE, "Dead State");
-//        Assert(runner4.getResult(), ResultType.DEAD_STATE, "Dead State");
-//        Assert(runner5.getResult(), ResultType.DEAD_STATE, "Dead State");
+        // interpret the result
+        System.out.println("Word: " + word0 + "\twas " + runner0.getResult().getResultType());
+        System.out.println("Word: " + word1 + "\twas " + runner1.getResult().getResultType());
+        System.out.println("Word: " + word2 + "\twas " + runner2.getResult().getResultType());
+        System.out.println("Word: " + word3 + "\twas " + runner3.getResult().getResultType());
+        System.out.println("Word: " + word4 + "\twas " + runner4.getResult().getResultType());
+        System.out.println("Word: " + word5 + "\twas " + runner5.getResult().getResultType());
     }
-    
-//    private static void Assert(Result rt, ResultType rtExpected, String strExpected) {
-//        if (rt.getResultType() != rtExpected) {
-//            throw new RuntimeException("Assertion error : " + rt + " should be " + rtExpected);
-//        }
-//        if (rt.getState().getLabel().compareTo(strExpected) != 0) {
-//            throw new RuntimeException("Assertion error : " + rt + " should be " + strExpected);
-//        }
-//    }
 }
