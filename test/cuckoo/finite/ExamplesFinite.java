@@ -196,20 +196,30 @@ public class ExamplesFinite {
         Word word1 = new Word(coin100);
         Word word2 = new Word(coin100, coin025);
         Word word3 = new Word(coin025, coin100);
-//        Word word0 = new Word(coin025, coin025, coin025, coin025, coin025);
+        Word word4 = new Word(coin025, coin025, coin025, coin025, coin025);
         
         DFARunner runner0 = new DFARunner(word0, coins000);
         DFARunner runner1 = new DFARunner(word1, coins000);
         DFARunner runner2 = new DFARunner(word2, coins000);
         DFARunner runner3 = new DFARunner(word3, coins000);
+        DFARunner runner4 = new DFARunner(word4, coins000);
+        
+        runner0.compute();
+        runner1.compute();
+        runner2.compute();
+        runner3.compute();
+        runner4.compute();
         
         Assert.assertEquals(runner0.getResult().getResultType(), ResultType.REJECTED);
         Assert.assertEquals(runner1.getResult().getResultType(), ResultType.REJECTED);
         
-        System.out.println(runner1.getResult().getState());
         Assert.assertEquals(runner2.getResult().getResultType(), ResultType.ACCECPTED);
+        Assert.assertEquals(runner2.getResult().getState(), coins125);
+
         Assert.assertEquals(runner3.getResult().getResultType(), ResultType.ACCECPTED);
-        
-        
+        Assert.assertEquals(runner3.getResult().getState(), coins125);
+
+        Assert.assertEquals(runner4.getResult().getResultType(), ResultType.ACCECPTED);
+        Assert.assertEquals(runner4.getResult().getState(), coins125);
     }
 }
