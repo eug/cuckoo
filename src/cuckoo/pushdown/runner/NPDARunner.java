@@ -65,13 +65,11 @@ public class NPDARunner {
             }
             
             else if (current.state.isFinalState()) {
-                System.out.println("ouauihaeiuheaiheaui\t" + current.state);
                 break;
             }
             
         } while (!queue.isEmpty());
         
-        System.out.println("llllllllllll");
     }
 
     private boolean isEndOfWord() {

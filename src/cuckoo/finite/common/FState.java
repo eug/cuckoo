@@ -1,37 +1,24 @@
 
 package cuckoo.finite.common;
 
+import cuckoo.common.State;
 import cuckoo.common.Symbol;
-import cuckoo.pushdown.common.PTransition;
 import cuckoo.utils.Epsilon;
 import java.util.List;
 import java.util.Objects;
 import java.util.LinkedList;
 
-public class FState {
-    
-    private final String label;
-    
-    private final boolean finalState;
+public class FState extends State {
 
     private final LinkedList<FTransition> transition;
-    
+
     public FState(String label) {
         this(label, false);
     }
-    
-    public FState(String label, boolean isFinal) {
-        this.label = label;
-        this.finalState = isFinal;
-        this.transition = new LinkedList<>();
-    }
 
-    public boolean isFinalState() {
-        return finalState;
-    }
-    
-    public String getLabel() {
-        return label;
+    public FState(String label, boolean finalState) {
+        super(label, finalState);
+        this.transition = new LinkedList<>();
     }
     
     public FTransition trans() {

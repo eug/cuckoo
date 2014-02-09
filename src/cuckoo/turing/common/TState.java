@@ -1,6 +1,7 @@
 
 package cuckoo.turing.common;
 
+import cuckoo.common.State;
 import cuckoo.common.Symbol;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,11 +10,7 @@ import java.util.List;
  *
  * @author eugf
  */
-public class TState {
-    
-    private final String label;
-    
-    private final boolean finalState;
+public class TState extends State {
     
     private final LinkedList<TTransition> transitions;
 
@@ -22,17 +19,8 @@ public class TState {
     }
 
     public TState(String label, boolean finalState) {
-        this.label = label;
-        this.finalState = finalState;
+        super(label, finalState);
         this.transitions = new LinkedList<>();
-    }
-    
-    public String getLabel() {
-        return label;
-    }
-    
-    public boolean isFinalState() {
-        return finalState;
     }
     
     public TTransition trans() {

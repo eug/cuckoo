@@ -2,10 +2,12 @@
 package cuckoo.turing.common;
 
 import cuckoo.common.Symbol;
+import cuckoo.common.Transition;
 import java.util.Objects;
+import cuckoo.utils.Epsilon;
 
 
-public class TTransition {
+public class TTransition implements Transition<TState> {
     
     private Symbol write;
     
@@ -15,6 +17,14 @@ public class TTransition {
     
     private int move;
 
+    public TTransition() {
+        this.write = new Epsilon();
+        this.read = new Epsilon();
+        this.next = new TState("Dead State", false);
+        this.move = Move.NONE;
+    }
+
+    @Override
     public TState getNext() {
         return next;
     }
@@ -56,6 +66,7 @@ public class TTransition {
         return this;
     }
     
+    @Override
     public void goTo(TState state) {
         next = state;
     }

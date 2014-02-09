@@ -2,7 +2,6 @@
 package cuckoo.utils;
 
 import cuckoo.common.Symbol;
-import cuckoo.common.Symbol;
 
 /**
  *

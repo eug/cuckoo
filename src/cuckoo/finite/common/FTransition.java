@@ -2,7 +2,7 @@
 package cuckoo.finite.common;
 
 import cuckoo.common.Symbol;
-import cuckoo.utils.DeadState;
+import cuckoo.common.Transition;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 
@@ -10,7 +10,7 @@ import java.util.Objects;
  *
  * @author eugf
  */
-public class FTransition {
+public class FTransition implements Transition<FState> {
     
     private final LinkedHashSet<Symbol> knwonSymbols;
     
@@ -18,7 +18,7 @@ public class FTransition {
 
     public FTransition() {
         this.knwonSymbols = new LinkedHashSet<>();
-        this.next = new DeadState();
+        this.next = new FState("Dead State", false);
     }
     
     public FTransition when(Symbol symbol) {
@@ -26,6 +26,7 @@ public class FTransition {
         return this;
     }
     
+    @Override
     public void goTo(FState state) {
         next = state;
     }
@@ -34,6 +35,7 @@ public class FTransition {
         return knwonSymbols;
     }
 
+    @Override
     public FState getNext() {
         return next;
     }

@@ -1,6 +1,7 @@
 
 package cuckoo.pushdown.common;
 
+import cuckoo.common.State;
 import cuckoo.common.Symbol;
 import cuckoo.utils.Epsilon;
 import java.util.LinkedList;
@@ -11,11 +12,7 @@ import java.util.List;
  *
  * @author eugf
  */
-public class PState {
-    
-    private final String label;
-    
-    private final boolean finalState;
+public class PState extends State {
 
     private final LinkedList<PTransition> transition;
     
@@ -23,18 +20,9 @@ public class PState {
         this(label, false);
     }
     
-    public PState(String label, boolean isFinal) {
-        this.label = label;
-        this.finalState = isFinal;
+    public PState(String label, boolean finalState) {
+        super(label, finalState);
         this.transition = new LinkedList<>();
-    }
-
-    public boolean isFinalState() {
-        return finalState;
-    }
-    
-    public String getLabel() {
-        return label;
     }
     
     public PTransition trans() {

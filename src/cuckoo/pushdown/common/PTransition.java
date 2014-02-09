@@ -2,16 +2,17 @@
 package cuckoo.pushdown.common;
 
 import cuckoo.common.Symbol;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
+import cuckoo.common.Transition;
 import java.util.List;
 import java.util.Objects;
+import java.util.LinkedList;
+import java.util.LinkedHashSet;
 
 /**
  *
  * @author eugf
  */
-public class PTransition {
+public class PTransition implements Transition<PState> {
     
     private final LinkedHashSet<Symbol> knwonSymbols;
     
@@ -25,6 +26,7 @@ public class PTransition {
         this.knwonSymbols = new LinkedHashSet<>();
         this.pushable = new LinkedList<>();
         this.popable = new LinkedList<>();
+        this.next = new PState("Dead State", false);
     }
     
     public PTransition when(Symbol symbol) {
@@ -42,6 +44,7 @@ public class PTransition {
         return this;
     }
     
+    @Override
     public void goTo(PState state) {
         next = state;
     }
@@ -58,6 +61,7 @@ public class PTransition {
         return pushable;
     }
     
+    @Override
     public PState getNext() {
         return next;
     }

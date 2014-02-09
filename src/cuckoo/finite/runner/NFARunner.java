@@ -1,9 +1,9 @@
 package cuckoo.finite.runner;
 
-import cuckoo.common.Result;
-import cuckoo.common.ResultType;
 import cuckoo.common.Word;
+import cuckoo.common.Result;
 import cuckoo.common.Symbol;
+import cuckoo.common.ResultType;
 import cuckoo.finite.common.FState;
 import cuckoo.finite.common.FTransition;
 import java.util.Queue;
@@ -39,7 +39,7 @@ public class NFARunner {
         
         do {
             current = queue.poll();
-            
+
             // if false, is the end of the word
             if (isEndOfWord()) {
                 if (current.state.isFinalState()) {
@@ -49,21 +49,27 @@ public class NFARunner {
                 }
             }
 
-            // TODO: Enqueue Epsilon Transitions
-            
             Symbol symbol  = word.get(current.index);
-
-            for (FTransition t : current.state.getTransitions(symbol)) {
-                FState state = t.getNext();
-                int index = current.index + 1;
-
-                queue.offer(new Tuple<>(state, index));
+            
+            for (FTransition trans : current.state.getEpsilonTransitions()) {
+                enqueueTransition(trans, true);            
+            }
+            
+            for (FTransition trans : current.state.getTransitions(symbol)) {
+                enqueueTransition(trans, false);
             }
             
         } while (!queue.isEmpty());
 
     }
+    
+    private void enqueueTransition(FTransition trans, boolean isEpsilon) {
+        FState state = trans.getNext();
+        int index = current.index + ((isEpsilon) ? 0 : 1);
 
+        queue.offer(new Tuple<>(state, index));
+    }
+    
     private boolean isEndOfWord() {
         return current.index >= word.size();
     }
