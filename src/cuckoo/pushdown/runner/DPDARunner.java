@@ -37,7 +37,7 @@ public class DPDARunner {
             
             for (PTransition t : current.getEpsilonTransitions()) {
                 // if more than one epsilon transition is given,
-                // the automaton will change the current state for
+                // the automaton will change the current state to
                 // the first valid epsilon transition.
                 computeTransition(t);
             }

@@ -6,7 +6,7 @@
             <name>cuckoo</name>
             <source-roots>
                 <root id="src.dir"/>
-                <root id="src.samples.dir" name="Samples"/>
+                <root id="src.examples.dir" name="Examples"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir"/>
