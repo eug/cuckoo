@@ -4,7 +4,7 @@ package cuckoo.common;
 /**
  * This class provides a skeletal implementation of a generic State.
  * The primary purpose of this abstract class is to allow
- * generic implementations extend the functionality of this ordinary state.
+ * implementations extend the functionality of this ordinary state.
  * @author eugf
  */
 public abstract class AbstractState {

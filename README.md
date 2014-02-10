@@ -2,3 +2,9 @@ cuckoo [![Build Status](https://travis-ci.org/eug/cuckoo.png?branch=master)](htt
 ======
 
 A simple and easy to use framework for creating automatons.
+
+
+build it
+========
+
+ant -f build.xml
