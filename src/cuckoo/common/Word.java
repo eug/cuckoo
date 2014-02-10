@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is a abstraction of a array of <tt>Symbol</tt>.
+ * This class is an abstraction of an array of <tt>Symbol</tt>.
  * This class doesn't provide any special behaviour, just a better
- * representation of the "word concept";
+ * representation of "word concept";
  * @author eugf
  */
 public class Word extends ArrayList<Symbol> {
@@ -23,6 +23,11 @@ public class Word extends ArrayList<Symbol> {
         super(Arrays.asList(symbols));
     }
     
+    /**
+     * Convert a given string to list fo Symbols.
+     * @param string String to be converted
+     * @return A String as list of Symbol objects.
+     */
     private List<Symbol> toSymbols(String string) {
         ArrayList<Symbol> symbols = new ArrayList<>();
         for(char c : string.toCharArray()) {

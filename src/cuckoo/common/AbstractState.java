@@ -43,7 +43,7 @@ public abstract class AbstractState {
     
     /**
      * Returns the Label given to this AbstractState.
-     * @return 
+     * @return Label of this object.
      */
     public String getLabel() {
         return label;

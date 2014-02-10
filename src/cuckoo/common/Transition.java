@@ -1,10 +1,32 @@
 
 package cuckoo.common;
 
-public interface Transition<S> {
+/**
+ * A {@code Transition} is a generic transition object.
+ * This class aims to be used internally as an abstraction of all types of transition.
+ * @see cuckoo.finite.common.FTransition
+ * @see cuckoo.pushdown.common.PTransition
+ * @see cuckoo.turing.common.TTransition
+ * @author eugf
+ * @param <S> The type of the next state. The object type must extend an {@link AbstractState}.
+ */
+public interface Transition<S extends AbstractState> {
     
+    /**
+     * Returns the next State.
+     * <tt>WARNING:</tt> If the next state wasn't defined,
+     * or is defined as {@code null} this method should return {@code null},
+     * and the application may crash.
+     * @return Next State.
+     */
     public S getNext();
     
+    /**
+     * Set the next State.
+     * <tt>WARNING:</tt> By default there is no null-value checking,
+     * if a {@code null} parameter was given, the application may crash.
+     * @param t Next state.
+     */
     public void goTo(S t);
     
 }

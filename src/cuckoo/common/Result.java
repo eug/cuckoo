@@ -8,7 +8,7 @@ package cuckoo.common;
  * be a implementations of {@link AbstractState}.
  * @author eugf
  */
-public class Result<S extends AbstractState> {
+public final class Result<S extends AbstractState> {
 
     private final S state;
     
