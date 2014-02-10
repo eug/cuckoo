@@ -1,74 +1,32 @@
 
 package cuckoo.common;
 
-import java.util.Set;
-import java.util.List;
-import java.util.HashSet;
-import java.util.ArrayList;
-
-public class Transition {
+/**
+ * A {@code Transition} is a generic transition object.
+ * This class aims to be used internally as an abstraction of all types of transition.
+ * @see cuckoo.finite.common.FTransition
+ * @see cuckoo.pushdown.common.PTransition
+ * @see cuckoo.turing.common.TTransition
+ * @author eugf
+ * @param <S> The type of the next state. The object type must extend an {@link AbstractState}.
+ */
+public interface Transition<S extends AbstractState> {
     
-    // store all possible symbols which can be consumed by this state
-    private final Set<Symbol> knownSymbols;
+    /**
+     * Returns the next State.
+     * <tt>WARNING:</tt> If the next state wasn't defined,
+     * or is defined as {@code null} this method should return {@code null},
+     * and the application may crash.
+     * @return Next State.
+     */
+    public S getNext();
     
-    private final List<Symbol> pushable;
-    
-    private final List<Symbol> popable;
-    
-    private State nextState;
-
-    public Transition() {
-        knownSymbols = new HashSet<>();
-        pushable = new ArrayList<>();
-        popable = new ArrayList<>();
-    }
-
-    Set<Symbol> getKnownSymbols() {
-        return knownSymbols;
-    }
-
-    List<Symbol> getPushable() {
-        return pushable;
-    }
-
-    List<Symbol> getPopable() {
-        return popable;
-    }
-    
-    State getNextState() {
-        return nextState;
-    }
-    
-    public Transition when(Symbol symbol) {
-        knownSymbols.add(symbol);
-        return this;
-    }
-    
-    public Transition goTo(State state) {
-        this.nextState = state;
-        return this;
-    }
-    
-    public Transition push(Symbol symbol) {
-        pushable.add(symbol);
-        return this;
-    }
-    
-    public Transition pop(Symbol symbol) {
-        popable.add(symbol);
-        return this;
-    }
-    
-//    public Transition write(Symbol symbol) {
-//        return this;
-//    }
-//    
-//    public Transition rigth() {
-//        return this;
-//    }
-//    
-//    public Transition left() {
-//        return this;
-//    }
+    /**
+     * Set the next State.
+     * <tt>WARNING:</tt> By default there is no null-value checking,
+     * if a {@code null} parameter was given, the application may crash.
+     * @param t Next state.
+     */
+    public void goTo(S t);
     
 }
