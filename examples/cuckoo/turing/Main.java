@@ -1,8 +1,8 @@
 
 package cuckoo.turing;
 
+import cuckoo.common.Tape;
 import cuckoo.common.Symbol;
-import cuckoo.common.Word;
 import cuckoo.turing.common.TState;
 import cuckoo.turing.runner.DTMRunner;
 import cuckoo.utils.DefaultSymbol;
@@ -26,7 +26,7 @@ public class Main {
         q2.trans().reads(zero).write(zero).left().goTo(q0);
         q2.trans().reads(one).write(one).right().goTo(q0);
         
-        Word word0 = new Word(zero, one, zero, zero, one, one, one, zero, one);
+        Tape word0 = new Tape(zero, one, zero, zero, one, one, one, zero, one);
         
         DTMRunner runner0 = new DTMRunner(word0, 4, q0);
         runner0.compute();

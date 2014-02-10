@@ -1,17 +1,10 @@
 
 package cuckoo.utils;
 
-import cuckoo.common.Symbol;
-
-public class Epsilon extends Symbol {
+public class Epsilon extends DefaultSymbol {
 
     public Epsilon() {
         super("ϵ");
-    }
-    
-    @Override
-    public boolean compute() {
-        return true;
     }
     
 }
