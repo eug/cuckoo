@@ -3,6 +3,7 @@ package cuckoo.pushdown.common;
 
 import cuckoo.common.Symbol;
 import cuckoo.common.Transition;
+import cuckoo.utils.DefaultSymbol;
 import java.util.List;
 import java.util.Objects;
 import java.util.LinkedList;
@@ -25,14 +26,26 @@ public class PTransition implements Transition<PState> {
         this.next = new PState("Dead State", false);
     }
     
+    public PTransition when(String symbol) {
+        return when(new DefaultSymbol(symbol));
+    }
+    
     public PTransition when(Symbol symbol) {
         knwonSymbols.add(symbol);
         return this;
     }
     
+    public PTransition pop(String symbol) {
+        return pop(new DefaultSymbol(symbol));
+    }
+    
     public PTransition pop(Symbol symbol) {
         popable.add(symbol);
         return this;
+    }
+    
+    public PTransition push(String symbol) {
+        return push(new DefaultSymbol(symbol));
     }
     
     public PTransition push(Symbol symbol) {

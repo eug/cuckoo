@@ -3,6 +3,7 @@ package cuckoo.finite.common;
 
 import cuckoo.common.Symbol;
 import cuckoo.common.Transition;
+import cuckoo.utils.DefaultSymbol;
 import java.util.Objects;
 import java.util.LinkedHashSet;
 
@@ -15,6 +16,10 @@ public class FTransition implements Transition<FState> {
     public FTransition() {
         this.knwonSymbols = new LinkedHashSet<>();
         this.next = new FState("Dead State", false);
+    }
+    
+    public FTransition when(String symbol) {
+        return when(new DefaultSymbol(symbol));
     }
     
     public FTransition when(Symbol symbol) {
