@@ -24,7 +24,10 @@ public class TTransition implements Transition<TState> {
         this.next = new TState("Dead State");
         this.move = Move.NONE;
     }
-
+    
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public TState getNext() {
         return next;
@@ -75,9 +78,20 @@ public class TTransition implements Transition<TState> {
         return this;
     }
     
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public void goTo(TState state) {
         next = state;
+    }
+    
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public boolean isValid() {
+        return next != null && write != null && read != null;
     }
 
     @Override

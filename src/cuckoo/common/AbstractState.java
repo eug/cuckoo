@@ -47,5 +47,5 @@ public abstract class AbstractState {
      */
     public String getLabel() {
         return label;
-    }
+    }    
 }

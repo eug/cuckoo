@@ -5,25 +5,17 @@ A simple and easy-to-use framework for creating automatons..
 
   - Finite, Pushdown and Turing machine support.
   - Descriptive declarations
+  - Implemented with breadth-first search for backtracking
 
-
-Version
-----
-
-2.0
-
-License
-----
-
-GPLv2
 
 Build
 ----------
-The ```*.jar``` file will be created at dist directory
+The ```*.jar``` file will be created at ```dist``` directory
 
 ```sh
 ant -f build.xml
 ```
+
 
 ----------
 TL;DR docs
@@ -44,7 +36,7 @@ TL;DR docs
 ----------
 Examples
 ----------
-For further undertanding take a look at ```examples``` tree.
+For further understanding take a look at ```examples``` tree.
 
 
 
@@ -52,8 +44,8 @@ For further undertanding take a look at ```examples``` tree.
 1) Define your states.
 
 ```java
- FState q0 = new State("q0");
- FState q1 = new State("q1");
+ FState q0 = new FState("q0");
+ FState q1 = new FState("q1");
 ```
 
 2) Define your transitions.
@@ -80,3 +72,11 @@ For further undertanding take a look at ```examples``` tree.
 ```java
 System.out.println(runner.getResult().getState());
 ```
+
+
+----------
+TODO
+----------
+* NFA to DFA conversion?
+* DFA minimization?
+* More examples, more use cases!

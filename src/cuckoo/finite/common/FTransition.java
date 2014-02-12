@@ -40,6 +40,11 @@ public class FTransition implements Transition<FState> {
     public FState getNext() {
         return next;
     }
+    
+    @Override
+    public boolean isValid() {
+        return next != null && !knwonSymbols.isEmpty();
+    }
 
     @Override
     public int hashCode() {

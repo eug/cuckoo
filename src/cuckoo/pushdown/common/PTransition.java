@@ -53,6 +53,9 @@ public class PTransition implements Transition<PState> {
         return this;
     }
     
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public void goTo(PState state) {
         next = state;
@@ -70,11 +73,22 @@ public class PTransition implements Transition<PState> {
         return pushable;
     }
     
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public PState getNext() {
         return next;
     }
-
+    
+    /**
+     * {@inheritDoc }
+     */
+    @Override
+    public boolean isValid() {
+        return next != null && !knwonSymbols.isEmpty();
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;

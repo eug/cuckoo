@@ -3,13 +3,13 @@ package cuckoo.finite.runner;
 import cuckoo.common.Word;
 import cuckoo.common.Result;
 import cuckoo.common.Symbol;
-import cuckoo.common.ResultType;
+import cuckoo.common.IRunner;
 import cuckoo.finite.common.FState;
 import cuckoo.finite.common.FTransition;
 import java.util.Queue;
 import java.util.LinkedList;
 
-public class NFARunner {
+public class NFARunner implements IRunner<FState> {
     
     private class Tuple<A,B> {
         public final A state;
@@ -31,6 +31,7 @@ public class NFARunner {
         this.initialStates = initial;
     }
 
+    @Override
     public void compute() {
         
         for (FState state : initialStates) {
@@ -72,6 +73,7 @@ public class NFARunner {
         return current.index >= word.size();
     }
 
+    @Override
     public Result<FState> getResult() {
         return new Result<>(current.state);
     }

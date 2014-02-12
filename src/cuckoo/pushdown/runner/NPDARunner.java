@@ -3,14 +3,14 @@ package cuckoo.pushdown.runner;
 import cuckoo.common.Word;
 import cuckoo.common.Result;
 import cuckoo.common.Symbol;
-import cuckoo.common.ResultType;
+import cuckoo.common.IRunner;
 import cuckoo.pushdown.common.PState;
 import cuckoo.pushdown.common.PTransition;
 import java.util.Queue;
 import java.util.Stack;
 import java.util.LinkedList;
 
-public class NPDARunner {
+public class NPDARunner implements IRunner<PState> {
 
     private class ThreeUple<A, B, C> {
         public final A state;
@@ -43,6 +43,7 @@ public class NPDARunner {
      * 4) compute the given symbol
      * 5) enqueue all other possible transitions
      */
+    @Override
     public void compute() {
 
         for (PState s : initial) {
@@ -107,6 +108,7 @@ public class NPDARunner {
         }
     }
     
+    @Override
     public Result<PState> getResult() {
         return new Result<>(current.state);
     }

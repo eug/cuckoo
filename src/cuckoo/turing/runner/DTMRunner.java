@@ -4,10 +4,11 @@ package cuckoo.turing.runner;
 import cuckoo.common.Word;
 import cuckoo.common.Symbol;
 import cuckoo.common.Result;
+import cuckoo.common.IRunner;
 import cuckoo.turing.common.TState;
 import cuckoo.turing.common.TTransition;
 
-public class DTMRunner {
+public class DTMRunner implements IRunner<TState> {
 
     private final TState initial;
     private final Word word;
@@ -25,6 +26,7 @@ public class DTMRunner {
         this.result = new Result(new TState("Dead State"));
     }
     
+    @Override
     public void compute() {
         int i = offset;
         TState current = initial;
@@ -55,6 +57,7 @@ public class DTMRunner {
         result = new Result(current);
     }
     
+    @Override
     public Result getResult() {
         return result;
     }
