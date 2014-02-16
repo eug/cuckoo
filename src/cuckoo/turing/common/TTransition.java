@@ -17,7 +17,10 @@ public class TTransition implements Transition<TState> {
     private TState next;
     
     private int move;
-
+    
+    /**
+     * Initializes a newly created {@code TTransition}.
+     */
     public TTransition() {
         this.write = new Epsilon();
         this.read = new Epsilon();
@@ -32,55 +35,104 @@ public class TTransition implements Transition<TState> {
     }
 
     
+    /**
+     * Returns which {@code Symbol} will be read from the {@code Tape}.
+     * @return 
+     */
     public Symbol getRead() {
         return read;
     }
 
     
+    /**
+     * Returns which {@code Symbol} will be written in the {@code Tape}.
+     * @return 
+     */
     public Symbol getWrite() {
         return write;
     }
 
     
+    /**
+     * Returns which movement will be executed.
+     * @see EMove
+     * @return Returns a value representing the movement.
+     */
     public int getMove() {
         return move;
     }
     
     
+    /**
+     * Reads the specified {@code String} from the {@code Tape}.
+     * Internally the specified {@code String} will be converted
+     * into a {@code Symbol} object.
+     * @param symbol String to be read
+     * @return This transition.
+     */
     public TTransition reads(String symbol) {
         return reads(new DefaultSymbol(symbol));
     }
     
     
+    /**
+     * Reads the specified {@code Symbol} from the {@code Tape}.
+     * @param symbol Symbol to be read
+     * @return This transition.
+     */
     public TTransition reads(Symbol symbol) {
         read = symbol;
         return this;
     }
+
     
-    
+    /**
+     * Writes the specified {@code String} in the {@code Tape}.
+     * Internally the specified {@code String} will be converted
+     * into a {@code Symbol} object.
+     * @param symbol String to be written
+     * @return This transition.
+     */    
     public TTransition write(String symbol) {
         return write(new DefaultSymbol(symbol));
     }
     
     
+    /**
+     * Writes the specified {@code Symbol} in the {@code Tape}.
+     * @param symbol Symbol to be written
+     * @return This transition.
+     */
     public TTransition write(Symbol symbol) {
         write = symbol;
         return this;
     }
     
     
+    /**
+     * Moves the head to the right.
+     * @return This transition.
+     */
     public TTransition right() {
         move = EMove.RIGHT;
         return this;
     }
     
     
+    /**
+     * Moves the head to the left.
+     * @return This transition.
+     */
     public TTransition left() {
         move = EMove.LEFT;
         return this;
     }
     
     
+    /**
+     * Do not move the head.
+     * @return This transition.
+     */
     public TTransition stay() {
         move = EMove.NONE;
         return this;
