@@ -25,7 +25,7 @@ public class Word extends ArrayList<Symbol> {
     }
     
     /**
-     * Constructs a Word object for a given an array of Symbols.
+     * Constructs a Word object for a given array of Symbols.
      * @param symbols 
      */
     public Word(Symbol... symbols) {
@@ -33,7 +33,7 @@ public class Word extends ArrayList<Symbol> {
     }
     
     /**
-     * Convert a given string to list fo Symbols.
+     * Convert a given string to list of Symbols.
      * @param string String to be converted
      * @return A String as list of Symbol objects.
      */

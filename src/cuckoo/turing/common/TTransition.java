@@ -22,77 +22,82 @@ public class TTransition implements Transition<TState> {
         this.write = new Epsilon();
         this.read = new Epsilon();
         this.next = new TState("Dead State");
-        this.move = Move.NONE;
+        this.move = EMove.NONE;
     }
     
-    /**
-     * {@inheritDoc }
-     */
+
     @Override
     public TState getNext() {
         return next;
     }
 
+    
     public Symbol getRead() {
         return read;
     }
 
+    
     public Symbol getWrite() {
         return write;
     }
 
+    
     public int getMove() {
         return move;
     }
     
+    
     public TTransition reads(String symbol) {
         return reads(new DefaultSymbol(symbol));
     }
+    
     
     public TTransition reads(Symbol symbol) {
         read = symbol;
         return this;
     }
     
+    
     public TTransition write(String symbol) {
         return write(new DefaultSymbol(symbol));
     }
+    
     
     public TTransition write(Symbol symbol) {
         write = symbol;
         return this;
     }
     
+    
     public TTransition right() {
-        move = Move.RIGHT;
+        move = EMove.RIGHT;
         return this;
     }
+    
     
     public TTransition left() {
-        move = Move.LEFT;
+        move = EMove.LEFT;
         return this;
     }
+    
     
     public TTransition stay() {
-        move = Move.NONE;
+        move = EMove.NONE;
         return this;
     }
     
-    /**
-     * {@inheritDoc }
-     */
+
     @Override
     public void goTo(TState state) {
         next = state;
     }
     
-    /**
-     * {@inheritDoc }
-     */
+
     @Override
     public boolean isValid() {
         return next != null && write != null && read != null;
     }
+    
 
     @Override
     public int hashCode() {
@@ -104,6 +109,7 @@ public class TTransition implements Transition<TState> {
         return hash;
     }
 
+    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -128,6 +134,7 @@ public class TTransition implements Transition<TState> {
         return true;
     }
 
+    
     @Override
     public String toString() {
         return "TTransition{" + "write=" + write + ", read=" + read + ", next=" + next + ", move=" + move + '}';

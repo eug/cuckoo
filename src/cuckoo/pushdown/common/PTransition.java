@@ -4,6 +4,7 @@ package cuckoo.pushdown.common;
 import cuckoo.common.Symbol;
 import cuckoo.common.Transition;
 import cuckoo.utils.DefaultSymbol;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.LinkedList;
@@ -26,68 +27,94 @@ public class PTransition implements Transition<PState> {
         this.next = new PState("Dead State", false);
     }
     
+    
+    /**
+     * Create a trigger for the current {@code FTransition}.
+     * When the specified symbol is read from the Word, this
+     * transition will be executed. Internally the specified {@code String}
+     * will be converted into a {@code Symbol} object.
+     * @param symbol 
+     * @return This transition.
+     */
     public PTransition when(String symbol) {
         return when(new DefaultSymbol(symbol));
     }
     
+    
+    /**
+     * Create a trigger for the current {@code FTransition}.
+     * When the specified symbol is read from the Word, this
+     * transition will be executed.
+     * @param symbol 
+     * @return This transition.
+     */
     public PTransition when(Symbol symbol) {
         knwonSymbols.add(symbol);
         return this;
     }
     
+    
     public PTransition pop(String symbol) {
         return pop(new DefaultSymbol(symbol));
     }
+    
     
     public PTransition pop(Symbol symbol) {
         popable.add(symbol);
         return this;
     }
     
+    
     public PTransition push(String symbol) {
         return push(new DefaultSymbol(symbol));
     }
+    
     
     public PTransition push(Symbol symbol) {
         pushable.add(symbol);
         return this;
     }
     
-    /**
-     * {@inheritDoc }
-     */
+
     @Override
     public void goTo(PState state) {
         next = state;
     }
     
-    public LinkedHashSet<Symbol> getKnownSymbols() {
+    
+    /**
+     * Returns a <tt>Set</tt> of Symbols associated with
+     * current <tt>Transition</tt>.
+     * @return Returns a {@code HashSet} of Symbols that are used to
+     * trigger the current transition, a empty {@code HashSet} can be
+     * returned if no Symbol was associated.
+     */
+    public HashSet<Symbol> getKnownSymbols() {
         return knwonSymbols;
     }
+    
     
     public List<Symbol> toPop() {
         return popable;
     }
     
+    
     public List<Symbol> toPush() {
         return pushable;
     }
     
-    /**
-     * {@inheritDoc }
-     */
+
     @Override
     public PState getNext() {
         return next;
     }
+
     
-    /**
-     * {@inheritDoc }
-     */
     @Override
     public boolean isValid() {
         return next != null && !knwonSymbols.isEmpty();
     }
+    
     
     @Override
     public int hashCode() {
@@ -99,6 +126,7 @@ public class PTransition implements Transition<PState> {
         return hash;
     }
 
+    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -123,6 +151,7 @@ public class PTransition implements Transition<PState> {
         return true;
     }
 
+    
     @Override
     public String toString() {
         return "PTransition{" + "knwonSymbols=" + knwonSymbols + ", pushable=" + pushable + ", popable=" + popable + ", nextState=" + next + '}';

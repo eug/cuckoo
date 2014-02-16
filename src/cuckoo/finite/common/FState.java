@@ -1,9 +1,8 @@
 
 package cuckoo.finite.common;
 
-import cuckoo.common.AbstractState;
 import cuckoo.common.Symbol;
-import cuckoo.common.Transition;
+import cuckoo.common.AbstractState;
 import cuckoo.utils.Epsilon;
 import java.util.List;
 import java.util.Objects;
@@ -22,6 +21,7 @@ public class FState extends AbstractState {
         this(label, false);
     }
 
+    
     /**
      * Constructs a Finite State.
      * This State can be usesd to build NFA and DFA automatons.
@@ -34,6 +34,7 @@ public class FState extends AbstractState {
         this.transition = new LinkedList<>();
     }
     
+    
     /**
      * Creates a new transition.
      * @return Last transition created.
@@ -43,24 +44,14 @@ public class FState extends AbstractState {
         return transition.getLast();
     }
     
-    /**
-     * Get a list of all transitions for this State.
-     * @return List of transitions.
-     */
+
+    @Override
     public List<FTransition> getTransitions() {
         return transition;
     }
     
     
-    /**
-     * Get the related transition for the given Symbol.
-     * Return the transition object if there is at least one
-     * defined transitions, otherwise a empty list will be returned.
-     * In order to avoid bad behaviours see {@link Transition#isValid()}
-     * @param symbol
-     * @return Returns a empty transition if no transition was found,
-     * otherwise returns a valid transition.
-     */
+    @Override
     public FTransition getTransition(Symbol symbol) {
         for (FTransition t : transition) {
             if (t.getKnownSymbols().contains(symbol)) {
@@ -70,10 +61,18 @@ public class FState extends AbstractState {
         return new FTransition();
     }
     
+    
+    /**
+     * Get all ϵ-transitions.
+     * @see #getTransitions(cuckoo.common.Symbol) 
+     * @return List of ϵ-transitions.
+     */
     public List<FTransition> getEpsilonTransitions() {
         return getTransitions(new Epsilon());
     }
     
+    
+    @Override
     public List<FTransition> getTransitions(Symbol symbol) {
         List<FTransition> trans = new LinkedList<>();
         
@@ -86,6 +85,7 @@ public class FState extends AbstractState {
         return trans;
     }
     
+    
     @Override
     public int hashCode() {
         int hash = 3;
@@ -95,6 +95,7 @@ public class FState extends AbstractState {
         return hash;
     }
 
+    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -116,6 +117,7 @@ public class FState extends AbstractState {
         return true;
     }
 
+    
     @Override
     public String toString() {
         return "FState{" + "label=" + label + ", finalState=" + finalState + '}';

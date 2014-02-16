@@ -1,6 +1,8 @@
 
 package cuckoo.common;
 
+import java.util.List;
+
 /**
  * This class provides a skeletal implementation of a generic State.
  * The primary purpose of this abstract class is to allow
@@ -47,5 +49,36 @@ public abstract class AbstractState {
      */
     public String getLabel() {
         return label;
-    }    
+    }
+    
+    
+    /**
+     * Get a list of all transitions for this State.
+     * @return List of transitions.
+     */
+    public abstract List getTransitions();
+    
+    
+    /**
+     * Get the related transition for the given Symbol.
+     * Return the transition object if there is at least one
+     * defined transition, otherwise a empty list will be returned.
+     * In order to avoid bad behaviours see {@link Transition#isValid()}
+     * @param symbol
+     * @return Returns a empty transition if no transition was found,
+     * otherwise returns a valid transition.
+     */
+    public abstract Transition getTransition(Symbol symbol);
+    
+    
+    /**
+     * Get all related transitions for the given Symbol.
+     * Return all transitions objects if there is at least one
+     * defined transition, otherwise a empty list will be returned.
+     * In order to avoid bad behaviours see {@link Transition#isValid()}
+     * @param symbol
+     * @return Returns a empty transition list if no transition was found,
+     * otherwise returns a list of transitions.
+     */
+    public abstract List getTransitions(Symbol symbol);
 }
