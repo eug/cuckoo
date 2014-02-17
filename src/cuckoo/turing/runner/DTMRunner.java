@@ -8,6 +8,10 @@ import cuckoo.common.IRunner;
 import cuckoo.turing.common.TState;
 import cuckoo.turing.common.TTransition;
 
+/**
+ * Implements a Runner for Deterministic Turing Machine.
+ * @author eugf
+ */
 public class DTMRunner implements IRunner<TState> {
 
     private final TState initial;
@@ -35,11 +39,8 @@ public class DTMRunner implements IRunner<TState> {
             
             Symbol symbol = word.get(i);
             
-            // select wich transition will be executed
             TTransition t = current.getTransition(symbol);
-            
-            // only execute the next instructions
-            // iff the expected symbol it's readed
+
             if (t.getRead().equals(symbol)) {
                 
                 // write on the tape

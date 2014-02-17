@@ -10,6 +10,10 @@ import java.util.Queue;
 import java.util.Stack;
 import java.util.LinkedList;
 
+/**
+ * Implements a Runner for Non Deterministic Pushdown Automata.
+ * @author eugf
+ */
 public class NPDARunner implements IRunner<PState> {
 
     private class ThreeUple<A, B, C> {
@@ -65,7 +69,7 @@ public class NPDARunner implements IRunner<PState> {
                 computeTransition(t, false);
             }
 
-            // the current state doesn't have any transition associated?
+            // Doesn't have any transition associated?
             if (current.state.getTransitions().isEmpty()) {
                 PState deadState = new PState("Dead State", false);
                 current = new ThreeUple<>(deadState, null, -1);
@@ -77,7 +81,7 @@ public class NPDARunner implements IRunner<PState> {
     }
 
     private boolean isEndOfWord() {
-        return current.index == word.size();
+        return current.index >= word.size();
     }
 
     private void computeTransition(PTransition t, boolean isEpsilon) {
@@ -90,13 +94,12 @@ public class NPDARunner implements IRunner<PState> {
             }
         }
         
-        // after we pop out some symbols, now we can push some new ones
         for (Symbol s : t.toPush()) {
             current.stack.push(s);
             changed = true;
         }
         
-        // update the cursor to the next state
+        // update the head to the next state
         // we only transfer to another state,
         // iff it was possible to pop or push a symbol
         if (changed) {

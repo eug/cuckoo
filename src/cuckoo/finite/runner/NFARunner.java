@@ -9,6 +9,10 @@ import cuckoo.finite.common.FTransition;
 import java.util.Queue;
 import java.util.LinkedList;
 
+/**
+ * Implements a Runner for Non Deterministic Finite Automata.
+ * @author eugf
+ */
 public class NFARunner implements IRunner<FState> {
     
     private class Tuple<A,B> {
@@ -25,6 +29,11 @@ public class NFARunner implements IRunner<FState> {
     private Tuple<FState, Integer> current;
     private final Queue<Tuple<FState, Integer>> queue;
     
+    /**
+     * Initializes a newly created {@code NFARunner}.
+     * @param word Word of {@code Symbol}
+     * @param initial Array of initial states.
+     */
     public NFARunner(Word word, FState... initial) {
         this.word = word;
         this.queue = new LinkedList<>();
