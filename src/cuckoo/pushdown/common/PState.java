@@ -1,8 +1,8 @@
 
 package cuckoo.pushdown.common;
 
-import cuckoo.common.AbstractState;
 import cuckoo.common.Symbol;
+import cuckoo.common.AbstractState;
 import cuckoo.utils.Epsilon;
 import java.util.List;
 import java.util.Objects;
@@ -21,15 +21,24 @@ public class PState extends AbstractState {
         this.transition = new LinkedList<>();
     }
     
+    
+    /**
+     * Creates a new transition.
+     * @return Last transition created.
+     */
     public PTransition trans() {
         transition.addLast(new PTransition());
         return transition.getLast();
     }
-
+    
+    
+    @Override
     public List<PTransition> getTransitions() {
         return transition;
     }
     
+    
+    @Override
     public PTransition getTransition(Symbol symbol) {
         for (PTransition t : transition) {
             if (t.getKnownSymbols().contains(symbol)) {
@@ -39,10 +48,18 @@ public class PState extends AbstractState {
         return new PTransition();
     }
     
+    
+    /**
+     * Get all ϵ-transitions.
+     * @see #getTransitions(cuckoo.common.Symbol) 
+     * @return List of ϵ-transitions.
+     */
     public List<PTransition> getEpsilonTransitions() {
         return getTransitions(new Epsilon());
     }
     
+    
+    @Override
     public List<PTransition> getTransitions(Symbol symbol) {
         List<PTransition> trans = new LinkedList<>();
         for (PTransition t : transition) {
@@ -53,6 +70,7 @@ public class PState extends AbstractState {
         return trans;
     }
 
+    
     @Override
     public int hashCode() {
         int hash = 3;
@@ -62,6 +80,7 @@ public class PState extends AbstractState {
         return hash;
     }
 
+    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -83,6 +102,7 @@ public class PState extends AbstractState {
         return true;
     }
 
+    
     @Override
     public String toString() {
         return "PState{" + "label=" + label + ", finalState=" + finalState + '}';

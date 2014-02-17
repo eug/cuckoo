@@ -14,17 +14,26 @@ import java.util.List;
  */
 public class Word extends ArrayList<Symbol> {
     
+    /**
+     * Convert a given string into a Word object.
+     * Internally the string will be converted into array of Symbols.
+     * @param string 
+     */
     public Word(String string) {
         super();
         addAll(toSymbols(string));
     }
     
+    /**
+     * Constructs a Word object for a given array of Symbols.
+     * @param symbols 
+     */
     public Word(Symbol... symbols) {
         super(Arrays.asList(symbols));
     }
     
     /**
-     * Convert a given string to list fo Symbols.
+     * Convert a given string to list of Symbols.
      * @param string String to be converted
      * @return A String as list of Symbol objects.
      */

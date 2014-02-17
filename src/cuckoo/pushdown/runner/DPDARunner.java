@@ -1,16 +1,24 @@
 
 package cuckoo.pushdown.runner;
 
-import cuckoo.common.Result;
-import cuckoo.common.ResultType;
+import cuckoo.common.IRunner;
 import cuckoo.common.Word;
+import cuckoo.common.Result;
 import cuckoo.common.Symbol;
 import cuckoo.pushdown.common.PState;
 import cuckoo.pushdown.common.PTransition;
 import java.util.Stack;
 
-public class DPDARunner {
-    
+
+/**
+ * Implements a Runner for Deterministic Pushdown Automata.
+ * For each symbol of the Word, get all possible transitions for the given Symbol, 
+ * for each transition, pop specified Symbols, push new Symbols and move the head
+ * to the next state.
+ * @author eugf
+ */
+public class DPDARunner implements IRunner<PState> {
+
     private final Stack<Symbol> stack;
     private PState current;
     private final Word word;
@@ -21,14 +29,7 @@ public class DPDARunner {
         this.word = word;
     }
 
-    /**
-     * Compute!.
-     * 
-     * for each symbol of word do
-     *      1) compute the given symbol, and return all possible transitions
-     *      2) first, pop symbols from stack; second, push symbols to stack
-     *      3) move to next state if something changed 
-     */
+    @Override
     public void compute() {
         
         for (Symbol symbol : word) {
@@ -55,7 +56,7 @@ public class DPDARunner {
             }
         }
         
-        // after we pop out some symbols, now we can push some new ones
+        // after we pop out some symbols, now we can push new ones
         for (Symbol s : trans.toPush()) {
             stack.push(s);
             changed = true;
@@ -69,6 +70,7 @@ public class DPDARunner {
         }
     }
     
+    @Override
     public Result<PState> getResult() {
         return new Result<>(current);
     }

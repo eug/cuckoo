@@ -1,8 +1,8 @@
 
 package cuckoo.finite.common;
 
-import cuckoo.common.AbstractState;
 import cuckoo.common.Symbol;
+import cuckoo.common.AbstractState;
 import cuckoo.utils.Epsilon;
 import java.util.List;
 import java.util.Objects;
@@ -12,24 +12,46 @@ public class FState extends AbstractState {
 
     private final LinkedList<FTransition> transition;
 
+    /**
+     * Constructs a Finite State.
+     * This State can be used to build NFA and DFA automatons.
+     * @param label A label for the state.
+     */
     public FState(String label) {
         this(label, false);
     }
 
+    
+    /**
+     * Constructs a Finite State.
+     * This State can be usesd to build NFA and DFA automatons.
+     * @param label A label for this state.
+     * @param finalState If {@code True} the State is setted
+     * as final state, otherwise a non-final state.
+     */
     public FState(String label, boolean finalState) {
         super(label, finalState);
         this.transition = new LinkedList<>();
     }
     
+    
+    /**
+     * Creates a new transition.
+     * @return Last transition created.
+     */
     public FTransition trans() {
         transition.addLast(new FTransition());
         return transition.getLast();
     }
     
+
+    @Override
     public List<FTransition> getTransitions() {
         return transition;
     }
     
+    
+    @Override
     public FTransition getTransition(Symbol symbol) {
         for (FTransition t : transition) {
             if (t.getKnownSymbols().contains(symbol)) {
@@ -39,10 +61,18 @@ public class FState extends AbstractState {
         return new FTransition();
     }
     
+    
+    /**
+     * Get all ϵ-transitions.
+     * @see #getTransitions(cuckoo.common.Symbol) 
+     * @return List of ϵ-transitions.
+     */
     public List<FTransition> getEpsilonTransitions() {
         return getTransitions(new Epsilon());
     }
     
+    
+    @Override
     public List<FTransition> getTransitions(Symbol symbol) {
         List<FTransition> trans = new LinkedList<>();
         
@@ -55,6 +85,7 @@ public class FState extends AbstractState {
         return trans;
     }
     
+    
     @Override
     public int hashCode() {
         int hash = 3;
@@ -64,6 +95,7 @@ public class FState extends AbstractState {
         return hash;
     }
 
+    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -85,6 +117,7 @@ public class FState extends AbstractState {
         return true;
     }
 
+    
     @Override
     public String toString() {
         return "FState{" + "label=" + label + ", finalState=" + finalState + '}';

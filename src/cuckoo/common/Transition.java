@@ -29,4 +29,11 @@ public interface Transition<S extends AbstractState> {
      */
     public void goTo(S t);
     
+    /**
+     * Returns <tt>true</tt> if has a next state and knwon symbols defined.
+     * Check if the current transition is well defined.
+     * @return Returns <tt>true</tt> if has a next state and a knwon symbol defined,
+     * otherwise returns <tt>false</tt>
+     */
+    public boolean isValid();
 }

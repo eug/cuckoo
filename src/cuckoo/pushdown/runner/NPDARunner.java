@@ -3,14 +3,18 @@ package cuckoo.pushdown.runner;
 import cuckoo.common.Word;
 import cuckoo.common.Result;
 import cuckoo.common.Symbol;
-import cuckoo.common.ResultType;
+import cuckoo.common.IRunner;
 import cuckoo.pushdown.common.PState;
 import cuckoo.pushdown.common.PTransition;
 import java.util.Queue;
 import java.util.Stack;
 import java.util.LinkedList;
 
-public class NPDARunner {
+/**
+ * Implements a Runner for Non Deterministic Pushdown Automata.
+ * @author eugf
+ */
+public class NPDARunner implements IRunner<PState> {
 
     private class ThreeUple<A, B, C> {
         public final A state;
@@ -43,6 +47,7 @@ public class NPDARunner {
      * 4) compute the given symbol
      * 5) enqueue all other possible transitions
      */
+    @Override
     public void compute() {
 
         for (PState s : initial) {
@@ -64,7 +69,7 @@ public class NPDARunner {
                 computeTransition(t, false);
             }
 
-            // the current state doesn't have any transition associated?
+            // Doesn't have any transition associated?
             if (current.state.getTransitions().isEmpty()) {
                 PState deadState = new PState("Dead State", false);
                 current = new ThreeUple<>(deadState, null, -1);
@@ -76,7 +81,7 @@ public class NPDARunner {
     }
 
     private boolean isEndOfWord() {
-        return current.index == word.size();
+        return current.index >= word.size();
     }
 
     private void computeTransition(PTransition t, boolean isEpsilon) {
@@ -89,13 +94,12 @@ public class NPDARunner {
             }
         }
         
-        // after we pop out some symbols, now we can push some new ones
         for (Symbol s : t.toPush()) {
             current.stack.push(s);
             changed = true;
         }
         
-        // update the cursor to the next state
+        // update the head to the next state
         // we only transfer to another state,
         // iff it was possible to pop or push a symbol
         if (changed) {
@@ -107,6 +111,7 @@ public class NPDARunner {
         }
     }
     
+    @Override
     public Result<PState> getResult() {
         return new Result<>(current.state);
     }
