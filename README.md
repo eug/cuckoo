@@ -10,7 +10,7 @@ A simple and easy-to-use framework for creating automatons..
 
 Build
 ----------
-The ```*.jar``` file will be created at ```dist``` directory. At this point ```cuckoo``` is only supported by jdk8 (because lambda is much more cooler!), so make sure you have jdk8 installed.
+The ```*.jar``` file will be created at ```dist``` directory. At this point ```cuckoo``` is only supported by jdk8 (because lambda is awesome!), so make sure you have jdk8 installed.
 
 ```sh
 ant -f build.xml
