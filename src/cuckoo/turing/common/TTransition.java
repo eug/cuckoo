@@ -36,8 +36,8 @@ public class TTransition implements Transition<TState> {
 
     
     /**
-     * Returns which {@code Symbol} will be read from the {@code Tape}.
-     * @return 
+     * Returns a {@code Symbol} will be read from the {@code Tape}.
+     * @return Returns a symbol object
      */
     public Symbol getRead() {
         return read;
@@ -46,7 +46,7 @@ public class TTransition implements Transition<TState> {
     
     /**
      * Returns which {@code Symbol} will be written in the {@code Tape}.
-     * @return 
+     * @return Returns a symbol object
      */
     public Symbol getWrite() {
         return write;

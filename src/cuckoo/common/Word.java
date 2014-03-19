@@ -17,7 +17,7 @@ public class Word extends ArrayList<Symbol> {
     /**
      * Convert a given string into a Word object.
      * Internally the string will be converted into array of Symbols.
-     * @param string 
+     * @param string Input string
      */
     public Word(String string) {
         super();
@@ -26,7 +26,7 @@ public class Word extends ArrayList<Symbol> {
     
     /**
      * Constructs a Word object for a given array of Symbols.
-     * @param symbols 
+     * @param symbols Input symbol
      */
     public Word(Symbol... symbols) {
         super(Arrays.asList(symbols));

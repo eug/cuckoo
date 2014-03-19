@@ -36,7 +36,7 @@ public class PTransition implements Transition<PState> {
      * When the specified symbol is read from the Word, this
      * transition will be executed. Internally the specified {@code String}
      * will be converted into a {@code Symbol} object.
-     * @param symbol 
+     * @param symbol Input symbol
      * @return This transition.
      */
     public PTransition when(String symbol) {
@@ -48,7 +48,7 @@ public class PTransition implements Transition<PState> {
      * Create a trigger for the current {@code FTransition}.
      * When the specified symbol is read from the Word, this
      * transition will be executed.
-     * @param symbol 
+     * @param symbol Input symbol
      * @return This transition.
      */
     public PTransition when(Symbol symbol) {

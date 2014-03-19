@@ -22,7 +22,6 @@ public final class Result<S extends AbstractState> {
      * this method will return {@code ACCEPTED}, otherwise {@code REJECTED}.<p>
      * <b>WARNING</b>: Sometimes the computation must be interpreted,
      * wich means that, even if the result isn't a final state, the word is accepted.<p>
-     * @see cuckoo.finite.Turnstile.java
      * @return {@code ACCEPTED} if the last is state is final, {@code REJECTED} otherwise.
      */
     public ResultType getResultType() {
