@@ -49,7 +49,7 @@ public class MultiplesOfThree {
         
         System.out.println("Word: " + word0 + "\t\t was " + runner0.getResult().getResultType());
         System.out.println("Word: " + word1 + "\t\t was " + runner1.getResult().getResultType());
-        System.out.println("Word: " + word2 + "\t was " + runner2.getResult().getResultType());
+        System.out.println("Word: " + word2 + "\t was "   + runner2.getResult().getResultType());
         System.out.println("Word: " + word3 + "\t\t\t was " + runner3.getResult().getResultType());
         System.out.println("Word: " + word4 + "\t\t\t was " + runner4.getResult().getResultType());
     }

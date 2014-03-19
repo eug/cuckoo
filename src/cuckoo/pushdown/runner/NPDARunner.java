@@ -56,18 +56,16 @@ public class NPDARunner implements IRunner<PState> {
 
         do {
             current = queue.poll();
-            
-            for (PTransition trans : current.state.getEpsilonTransitions()) {
-                computeTransition(trans, true);            
-            }
+            current.state.getEpsilonTransitions().stream().forEach((trans) -> {
+                computeTransition(trans, true);
+            });
             
             if (isEndOfWord()) { continue; }
             
             Symbol symbol = word.get(current.index);
-
-            for (PTransition t : current.state.getTransitions(symbol)) {
+            current.state.getTransitions(symbol).stream().forEach((t) -> {
                 computeTransition(t, false);
-            }
+            });
 
             // Doesn't have any transition associated?
             if (current.state.getTransitions().isEmpty()) {

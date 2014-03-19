@@ -24,25 +24,24 @@ public class DPDARunner implements IRunner<PState> {
     private final Word word;
     
     public DPDARunner(Word word, PState initial) {
+        this.word = word;
         this.current = initial;
         this.stack = new Stack();
-        this.word = word;
     }
 
     @Override
     public void compute() {
-        
-        for (Symbol symbol : word) {
-            
+        word.stream().forEach( (symbol) -> {
+
             computeTransition(current.getTransition(symbol));
-            
-            for (PTransition t : current.getEpsilonTransitions()) {
-                // if more than one epsilon transition is given,
-                // the automaton will change the current state to
-                // the first valid epsilon transition.
+
+            // if more than one epsilon transition is given,
+            // the automaton will change the current state to
+            // the first valid epsilon transition.
+            current.getEpsilonTransitions().stream().forEach((t) -> {
                 computeTransition(t);
-            }
-        }
+            });
+        });
 
     }
 

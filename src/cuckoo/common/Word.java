@@ -39,7 +39,7 @@ public class Word extends ArrayList<Symbol> {
      */
     private List<Symbol> toSymbols(String string) {
         ArrayList<Symbol> symbols = new ArrayList<>();
-        for(char c : string.toCharArray()) {
+        for (char c : string.toCharArray()) {
             symbols.add(new DefaultSymbol(c + ""));
         }
         return symbols;

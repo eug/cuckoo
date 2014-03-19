@@ -3,10 +3,8 @@ package cuckoo.finite.runner;
 
 import cuckoo.common.IRunner;
 import cuckoo.common.Word;
-import cuckoo.common.Symbol;
 import cuckoo.common.Result;
 import cuckoo.finite.common.FState;
-import cuckoo.finite.common.FTransition;
 
 /**
  * Implements a Runner for Deterministic Finite Automata.
@@ -34,10 +32,11 @@ public class DFARunner implements IRunner<FState> {
     
     @Override
     public void compute() {
-        for (Symbol symbol : word) {
-            FTransition trans = current.getTransition(symbol);
-            current = trans.getNext();
-        }
+        word.stream().map(
+            (symbol) -> current.getTransition(symbol)
+        ).forEach(
+            (trans) -> { current = trans.getNext(); }
+        );
     }
     
     @Override

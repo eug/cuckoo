@@ -3,9 +3,9 @@ cuckoo [![Build Status](https://travis-ci.org/eug/cuckoo.png?branch=master)](htt
 
 A simple and easy-to-use framework for creating automatons..
 
-  - Finite, Pushdown and Turing machine support.
   - Descriptive declarations
-  - Implemented with breadth-first search for backtracking
+  - Finite, Pushdown and Turing machine support.
+  - Implemented with breadth-first search for evaluate the three of possibilities
 
 
 Build
@@ -77,6 +77,6 @@ System.out.println(runner.getResult().getState());
 ----------
 TODO
 ----------
-* NFA to DFA conversion?
 * DFA minimization?
+* NFA to DFA conversion?
 * More examples, more use cases!
