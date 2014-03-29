@@ -5,7 +5,7 @@ A simple and easy-to-use framework for creating automatons..
 
   - Descriptive declarations
   - Finite, Pushdown and Turing machine support.
-  - Implemented with breadth-first search for evaluate the three of possibilities
+  - Implemented with breadth-first search for evaluate the tree of possibilities
 
 
 Build
