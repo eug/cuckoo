@@ -76,12 +76,12 @@ public class FState extends AbstractState {
     public List<FTransition> getTransitions(Symbol symbol) {
         List<FTransition> trans = new LinkedList<>();
         
-        for (FTransition t : transition) {
-            if (t.getKnownSymbols().contains(symbol)) {
-                trans.add(t);
-            }
-        }
-        
+        transition.stream().filter(
+            (t) -> t.getKnownSymbols().contains(symbol)
+        ).forEach(
+            (t) -> { trans.add(t); }
+        );
+
         return trans;
     }
     

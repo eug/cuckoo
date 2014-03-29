@@ -64,7 +64,7 @@ public abstract class AbstractState {
      * Return the transition object if there is at least one
      * defined transition, otherwise a empty list will be returned.
      * In order to avoid bad behaviours see {@link Transition#isValid()}
-     * @param symbol
+     * @param symbol Input symbol
      * @return Returns a empty transition if no transition was found,
      * otherwise returns a valid transition.
      */
@@ -76,7 +76,7 @@ public abstract class AbstractState {
      * Return all transitions objects if there is at least one
      * defined transition, otherwise a empty list will be returned.
      * In order to avoid bad behaviours see {@link Transition#isValid()}
-     * @param symbol
+     * @param symbol Input symbol
      * @return Returns a empty transition list if no transition was found,
      * otherwise returns a list of transitions.
      */

@@ -49,7 +49,8 @@ public class NFARunner implements IRunner<FState> {
         
         do {
             current = queue.poll();
-
+            
+            // ugly code detected!
             if (isEndOfWord()) {
                 if (current.state.isFinalState()) {
                     break;
@@ -60,13 +61,13 @@ public class NFARunner implements IRunner<FState> {
 
             Symbol symbol  = word.get(current.index);
             
-            for (FTransition trans : current.state.getEpsilonTransitions()) {
-                enqueueTransition(trans, true);            
-            }
+            current.state.getEpsilonTransitions().stream().forEach((trans) -> {
+                enqueueTransition(trans, true);
+            });
             
-            for (FTransition trans : current.state.getTransitions(symbol)) {
+            current.state.getTransitions(symbol).stream().forEach((trans) -> {
                 enqueueTransition(trans, false);
-            }
+            });
             
         } while (!queue.isEmpty());
 

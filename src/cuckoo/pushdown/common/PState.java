@@ -62,11 +62,13 @@ public class PState extends AbstractState {
     @Override
     public List<PTransition> getTransitions(Symbol symbol) {
         List<PTransition> trans = new LinkedList<>();
-        for (PTransition t : transition) {
-            if (t.getKnownSymbols().contains(symbol)) {
-                trans.add(t);
-            }
-        }
+        
+        transition.stream().filter(
+            (t) -> (t.getKnownSymbols().contains(symbol))
+        ).forEach(
+            (t) -> { trans.add(t);}
+        );
+        
         return trans;
     }
 
