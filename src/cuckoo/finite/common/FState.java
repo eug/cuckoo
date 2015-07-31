@@ -10,7 +10,7 @@ import java.util.LinkedList;
 
 public class FState extends AbstractState {
 
-    private final LinkedList<FTransition> transition;
+    private final LinkedList<FTransition> transitions;
 
     /**
      * Constructs a Finite State.
@@ -24,14 +24,14 @@ public class FState extends AbstractState {
     
     /**
      * Constructs a Finite State.
-     * This State can be usesd to build NFA and DFA automatons.
+     * This State can be used to build NFA and DFA automatons.
      * @param label A label for this state.
-     * @param finalState If {@code True} the State is setted
+     * @param finalState If {@code True} the State is defined
      * as final state, otherwise a non-final state.
      */
     public FState(String label, boolean finalState) {
         super(label, finalState);
-        this.transition = new LinkedList<>();
+        this.transitions = new LinkedList<>();
     }
     
     
@@ -40,20 +40,20 @@ public class FState extends AbstractState {
      * @return Last transition created.
      */
     public FTransition trans() {
-        transition.addLast(new FTransition());
-        return transition.getLast();
+        transitions.addLast(new FTransition());
+        return transitions.getLast();
     }
     
 
     @Override
     public List<FTransition> getTransitions() {
-        return transition;
+        return transitions;
     }
     
     
     @Override
     public FTransition getTransition(Symbol symbol) {
-        for (FTransition t : transition) {
+        for (FTransition t : transitions) {
             if (t.getKnownSymbols().contains(symbol)) {
                 return t;
             }
@@ -76,7 +76,7 @@ public class FState extends AbstractState {
     public List<FTransition> getTransitions(Symbol symbol) {
         List<FTransition> trans = new LinkedList<>();
         
-        transition.stream().filter(
+        transitions.stream().filter(
             (t) -> t.getKnownSymbols().contains(symbol)
         ).forEach(
             (t) -> { trans.add(t); }
@@ -89,9 +89,9 @@ public class FState extends AbstractState {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 89 * hash + (this.finalState ? 1 : 0);
+        hash = 89 * hash + (this.isFinalState ? 1 : 0);
         hash = 89 * hash + Objects.hashCode(this.label);
-        hash = 89 * hash + Objects.hashCode(this.transition);
+        hash = 89 * hash + Objects.hashCode(this.transitions);
         return hash;
     }
 
@@ -105,13 +105,13 @@ public class FState extends AbstractState {
             return false;
         }
         final FState other = (FState) obj;
-        if (this.finalState != other.finalState) {
+        if (this.isFinalState != other.isFinalState) {
             return false;
         }
         if (!Objects.equals(this.label, other.label)) {
             return false;
         }
-        if (!Objects.equals(this.transition, other.transition)) {
+        if (!Objects.equals(this.transitions, other.transitions)) {
             return false;
         }
         return true;
@@ -120,7 +120,7 @@ public class FState extends AbstractState {
     
     @Override
     public String toString() {
-        return "FState{" + "label=" + label + ", finalState=" + finalState + '}';
+        return "FState{" + "label=" + label + ", finalState=" + isFinalState + '}';
     }
 
 }

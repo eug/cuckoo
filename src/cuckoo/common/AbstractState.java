@@ -13,7 +13,7 @@ public abstract class AbstractState {
 
     protected final String label;
     
-    protected final boolean finalState;
+    protected final boolean isFinalState;
     
     /**
      * Constructs a State with the specified label.
@@ -31,7 +31,7 @@ public abstract class AbstractState {
      */
     public AbstractState(String label, boolean finalState) {
         this.label = label;
-        this.finalState = finalState;
+        this.isFinalState = finalState;
     }
 
     /**
@@ -40,7 +40,7 @@ public abstract class AbstractState {
      * {@code false} otherwise.
      */
     public boolean isFinalState() {
-        return finalState;
+        return isFinalState;
     }
     
     /**

@@ -77,7 +77,7 @@ public class PState extends AbstractState {
     public int hashCode() {
         int hash = 3;
         hash = 23 * hash + Objects.hashCode(this.label);
-        hash = 23 * hash + (this.finalState ? 1 : 0);
+        hash = 23 * hash + (this.isFinalState ? 1 : 0);
         hash = 23 * hash + Objects.hashCode(this.transition);
         return hash;
     }
@@ -95,7 +95,7 @@ public class PState extends AbstractState {
         if (!Objects.equals(this.label, other.label)) {
             return false;
         }
-        if (this.finalState != other.finalState) {
+        if (this.isFinalState != other.isFinalState) {
             return false;
         }
         if (!Objects.equals(this.transition, other.transition)) {
@@ -107,7 +107,7 @@ public class PState extends AbstractState {
     
     @Override
     public String toString() {
-        return "PState{" + "label=" + label + ", finalState=" + finalState + '}';
+        return "PState{" + "label=" + label + ", finalState=" + isFinalState + '}';
     }
 
 }

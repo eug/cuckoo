@@ -40,7 +40,8 @@ public class NPDARunner implements IRunner<PState> {
 
     /**
      * Compute!.
-     * enqueue all initial states while queue is not empty do
+     * enqueue all initial states
+     * while queue is not empty do
      * 1) dequeue one state
      * 2) process all epsilon transitions
      * 3) get a symbol

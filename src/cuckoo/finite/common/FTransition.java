@@ -10,7 +10,7 @@ import java.util.LinkedHashSet;
 
 public class FTransition implements Transition<FState> {
     
-    private final LinkedHashSet<Symbol> knwonSymbols;
+    private final LinkedHashSet<Symbol> knownSymbols;
     
     private FState next;
 
@@ -18,7 +18,7 @@ public class FTransition implements Transition<FState> {
      * Initializes a newly created {@code FTransition}.
      */
     public FTransition() {
-        this.knwonSymbols = new LinkedHashSet<>();
+        this.knownSymbols = new LinkedHashSet<>();
         this.next = new FState("Dead State", false);
     }
     
@@ -44,7 +44,7 @@ public class FTransition implements Transition<FState> {
      * @return This transition.
      */
     public FTransition when(Symbol symbol) {
-        knwonSymbols.add(symbol);
+        knownSymbols.add(symbol);
         return this;
     }
     
@@ -56,7 +56,7 @@ public class FTransition implements Transition<FState> {
      * returned if no Symbol was associated.
      */
     public HashSet<Symbol> getKnownSymbols() {
-        return knwonSymbols;
+        return knownSymbols;
     }
     
     
@@ -74,14 +74,14 @@ public class FTransition implements Transition<FState> {
     
     @Override
     public boolean isValid() {
-        return next != null && !knwonSymbols.isEmpty();
+        return next != null && !knownSymbols.isEmpty();
     }
 
     
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.knwonSymbols);
+        hash = 53 * hash + Objects.hashCode(this.knownSymbols);
         hash = 53 * hash + Objects.hashCode(this.next);
         return hash;
     }
@@ -96,7 +96,7 @@ public class FTransition implements Transition<FState> {
             return false;
         }
         final FTransition other = (FTransition) obj;
-        if (!Objects.equals(this.knwonSymbols, other.knwonSymbols)) {
+        if (!Objects.equals(this.knownSymbols, other.knownSymbols)) {
             return false;
         }
         if (!Objects.equals(this.next, other.next)) {
@@ -108,7 +108,7 @@ public class FTransition implements Transition<FState> {
     
     @Override
     public String toString() {
-        return "FTransition{" + "knwonSymbols=" + knwonSymbols + ", next=" + next + '}';
+        return "FTransition{" + "knwonSymbols=" + knownSymbols + ", next=" + next + '}';
     }
 
 }

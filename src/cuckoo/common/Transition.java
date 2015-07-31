@@ -16,7 +16,7 @@ public interface Transition<S extends AbstractState> {
      * Returns the next State.
      * <tt>WARNING:</tt> If the next state wasn't defined,
      * or is defined as {@code null} this method should return {@code null},
-     * and the application may crash.
+     * otherwise the application will crash.
      * @return Next State.
      */
     public S getNext();
@@ -24,7 +24,7 @@ public interface Transition<S extends AbstractState> {
     /**
      * Set the next State.
      * <tt>WARNING:</tt> By default there is no null-value checking,
-     * if a {@code null} parameter was given, the application may crash.
+     * if a {@code null} parameter is given, the application may crash.
      * @param t Next state.
      */
     public void goTo(S t);
