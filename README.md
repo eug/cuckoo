@@ -46,8 +46,6 @@ For further understanding take a look at ```examples``` tree.
     <br>
     <img width="200" src="https://raw.githubusercontent.com/eug/cuckoo/master/example.png" alt="cuckoo">
     <br>
-    <br>
-    <br>
 </h1>
 
 1) Define your states.
