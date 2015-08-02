@@ -10,7 +10,7 @@ A simple and easy-to-use framework for creating automatons..
 
 Build
 ----------
-The ```*.jar``` file will be created at ```dist``` directory. At this point ```cuckoo``` is only supported by jdk8 (because lambda is awesome!), so make sure you have jdk8 installed.
+The ```*.jar``` file will be created at ```dist``` directory.
 
 ```sh
 ant -f build.xml
@@ -41,6 +41,15 @@ For further understanding take a look at ```examples``` tree.
 
 
 ### A simple Deterministic Finite Automaton ###
+
+<h1 align="center">
+    <br>
+    <img width="200" src="https://raw.githubusercontent.com/eug/cuckoo/master/example.png" alt="cuckoo">
+    <br>
+    <br>
+    <br>
+</h1>
+
 1) Define your states.
 
 ```java
@@ -79,4 +88,4 @@ TODO
 ----------
 * DFA minimization?
 * NFA to DFA conversion?
-* More examples, more use cases!
+* More examples!
